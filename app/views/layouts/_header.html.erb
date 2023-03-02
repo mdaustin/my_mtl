@@ -25,7 +25,7 @@
       <!-- secondary nav -->
       <div class="hidden md:flex items-center space-x-1">
         <a href="<%= 'login_path'%>" class="py-5 px-3">Log in</a>
-        <a href="<%= 'signup_path'%>" class="py-5 px-3 rounded-md hover:bg-gray-00">Sign up</a>
+        <a href="<%= signup_path%>" class="py-5 px-3 rounded-md hover:bg-gray-00">Sign up</a>
       </div>
 
       <!-- mobile button -->
@@ -45,5 +45,6 @@
     <%= link_to 'Help', help_path, class: "block py-2 px-4 text-sm hover bg-gray-200" %>
     <div class="w-full border-t border-gray-300"></div>
     <%= link_to 'Log in', 'login_path', class: "block py-2 px-4 text-sm hover bg-gray-200" %>
+    <%= link_to 'Sign up', signup_path %>
   </div>
 </nav>
