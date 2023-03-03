@@ -27,7 +27,7 @@
 
         <% if logged_in? %>
         <%= link_to 'Profile', current_user %>
-        <%= link_to 'Settings', '#' %>
+        <%= link_to 'Settings', edit_user_path(current_user) %>
         <%= link_to 'Log out', logout_path, data: {"turbo-method": :delete } %>
         <% else %>
         <a href="<%= login_path%>" class="py-5 px-3">Log in</a>
@@ -55,7 +55,7 @@
 
     <% if logged_in? %>
       <%= link_to 'Profile', current_user %>
-      <%= link_to 'Settings', '#' %>
+      <%= link_to 'Settings', edit_user_path(current_user) %>
       <%= link_to 'Log out', logout_path, data: {"turbo-method": :delete } %>     
     <% else %>
     <%= link_to 'Log in', login_path, class: "block py-2 px-4 text-sm hover bg-gray-200" %>
