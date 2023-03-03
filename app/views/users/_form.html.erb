@@ -2,19 +2,19 @@
     <%= render 'shared/error_messages', object: f.object %>
 
     <%= f.label :username %>
-    <%= f.text_field :username, class: 'relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
+    <%= f.text_field :username, placeholder: "Username", class: 'relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
 
     <%= f.label :email %>
-    <%= f.email_field :email, class: 'relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
+    <%= f.email_field :email, placeholder: "Email", class: 'relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
 
     <%= f.label :password%>
-    <%= f.password_field :password, class: 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
+    <%= f.password_field :password, placeholder: "Password", class: 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
 
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
+    <%= f.password_field :password_confirmation, placeholder: "Password Confirmation", class: 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
 
     <%= f.submit yield(:button_text), class: 'group relative flex w-full justify-center
-                                              rounded-md border border-transparent bg-indigo-600
-                                              py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700
-                                              focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2' %>
+                                              rounded-md border border-transparent bg-yellow-500
+                                              py-2 px-4 text-sm font-medium text-white hover:bg-yellow-400
+                                              focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2' %>
 <% end %>
