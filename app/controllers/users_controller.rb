@@ -11,6 +11,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       # Handle successful save
+      reset_session
+      log_in @user
       flash[:success] = "Welcome to MyMTL!"
       redirect_to @user
     else
