@@ -1,0 +1,32 @@
+<% provide(:title, 'Reset password') %>
+
+<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md space-y-8">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Reset password</h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+
+      </p>
+    </div>
+
+    <%= form_with(model: @user, url: password_reset_path(params[:id])) do |f|%>
+      <%= render 'shared/error_messages' %>
+
+      <%= hidden_field_tag :email, @user.email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, placeholder: "password", class: "relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+      
+      <%= f.label :password_confirmation  %>
+      <%= f.password_field :password_confirmation, placeholder: "confirm password", class: "relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+
+      <%= f.submit "Submit", class: 'group relative flex w-full justify-center
+                                              rounded-md border border-transparent bg-yellow-500
+                                              py-2 px-4 text-sm font-medium text-white hover:bg-yellow-400
+                                              focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2' %>
+    <% end %>
+
+
+
+  </div>
+</div>
