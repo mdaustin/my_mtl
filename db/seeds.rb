@@ -10,7 +10,9 @@ User.create!(username: "maustin",
              email: "maustin@mymtl.ca",
              password: "foobar",
              password_confirmation: "foobar",
-             admin: true )
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
 
 # Generate 99 users
 99.times do |n|
@@ -20,5 +22,7 @@ User.create!(username: "maustin",
     User.create!(username: username.strip,
                  email: email,
                  password: password,
-                 password_confirmation: password )
+                 password_confirmation: password,
+                 activated: true,
+                 activated_at: Time.zone.now )
 end
