@@ -9,7 +9,8 @@
 User.create!(username: "maustin", 
              email: "maustin@mymtl.ca",
              password: "foobar",
-             password_confirmation: "foobar")
+             password_confirmation: "foobar",
+             admin: true )
 
 # Generate 99 users
 99.times do |n|
