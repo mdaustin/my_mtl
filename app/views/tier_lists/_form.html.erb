@@ -1,0 +1,11 @@
+<%= form_with(model: @tier_list, url: user_tier_lists_path) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: "Title", class: 'relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
+    <%= f.label :description %>
+    <%= f.text_area :description, placeholder: "Describe your Tier List...", class: 'relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
+    <%= f.submit "Create Tier List", class: 'group relative flex w-full justify-center
+                                              rounded-md border border-transparent bg-yellow-500
+                                              py-2 px-4 text-sm font-medium text-white hover:bg-yellow-400
+                                              focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2' %>
+<% end %>
