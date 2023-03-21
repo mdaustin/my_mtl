@@ -6,23 +6,33 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create!(username: "maustin", 
-             email: "maustin@mymtl.ca",
-             password: "foobar",
-             password_confirmation: "foobar",
-             admin: true,
-             activated: true,
-             activated_at: Time.zone.now)
+if User.count == 0
+    User.create!(username: "maustin", 
+                email: "maustin@mymtl.ca",
+                password: "foobar",
+                password_confirmation: "foobar",
+                admin: true,
+                activated: true,
+                activated_at: Time.zone.now)
 
-# Generate 99 users
-99.times do |n|
-    username = Faker::Name.unique.name
-    email = "example-#{n+1}@example.com"
-    password = "password"
-    User.create!(username: username.strip,
-                 email: email,
-                 password: password,
-                 password_confirmation: password,
-                 activated: true,
-                 activated_at: Time.zone.now )
+    # Generate 99 users
+    99.times do |n|
+        username = Faker::Name.unique.name
+        email = "example-#{n+1}@example.com"
+        password = "password"
+        User.create!(username: username.strip,
+                    email: email,
+                    password: password,
+                    password_confirmation: password,
+                    activated: true,
+                    activated_at: Time.zone.now )
+    end
+end
+
+if TierList.count == 0
+    user = User.first
+    3.times do 
+        title = Faker::Lorem.sentence(word_count: 2)
+        user.tier_lists.create!(title: title, description: "#{user.username}'s #{user.tier_lists.count.ordinalize} tier list")
+    end
 end
