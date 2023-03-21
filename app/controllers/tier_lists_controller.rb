@@ -1,7 +1,7 @@
 class TierListsController < ApplicationController
-    before_action :logged_in_user, only: [:create, :destroy]
+    before_action :logged_in_user, only: [:new, :update, :edit, :create, :destroy]
     before_action :correct_user, only: [:edit, :update, :destroy]
-    before_action :get_user
+    #before_action :get_user
     
     def index
         @tier_lists = @user.tier_lists
@@ -21,12 +21,17 @@ class TierListsController < ApplicationController
         if @tier_list.save 
             flash[:success] = "Tier List Created!"
             redirect_to @current_user
+            #redirect_to user_tier_list_path(@user, @tier_list)
             #redirect_to user_tier_lists_path(@tier_list)
         else 
             flash[:danger] = "A problem occured while creating your teir list."
             render 'new', status: :unprocessable_entity
         end
     end
+
+    def edit
+
+    end 
 
     def update 
         if @tier_list.update(tier_list_params)

@@ -9,3 +9,8 @@ testmtl:
   title: MyTestTierList
   description: Its for tests
   user: matthew
+
+archermtl:
+  title: ArchersList
+  description: Its a movie list
+  user: archer
