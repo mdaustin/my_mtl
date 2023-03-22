@@ -87,3 +87,7 @@ group :test do
   gem "guard"
   gem "guard-minitest"
 end
+
+gem "ranked-model", "~> 0.4.8"
+
+gem "requestjs-rails", "~> 0.0.10"
