@@ -1,0 +1,13 @@
+<div id="<%= dom_id tier %>">
+
+    <%= tier.id %>
+    <h2><%= tier.title %></h2>
+    <%= tier.row_order %>
+    
+
+    
+    <div class="actions">
+        <%= link_to "Edit", '#' %>
+        <%= link_to "Destroy", '#', method: :delete, data: { confirm: "Are you sure?" } %>
+    </div>
+</div>
