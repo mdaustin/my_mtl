@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  tier_list: one
-  title: MyString
+  tier_list: mymtl
+  title: FirstTier
+  row_order: 1
 
 two:
-  tier_list: two
-  title: MyString
+  tier_list: mymtl
+  title: SecondTier
+  row_order: 2
