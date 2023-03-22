@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_21_053828) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_22_130814) do
   create_table "tier_lists", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -18,6 +18,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_21_053828) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tier_lists_on_user_id"
+  end
+
+  create_table "tiers", force: :cascade do |t|
+    t.integer "tier_list_id", null: false
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "row_order"
+    t.index ["tier_list_id"], name: "index_tiers_on_tier_list_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,4 +47,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_21_053828) do
   end
 
   add_foreign_key "tier_lists", "users"
+  add_foreign_key "tiers", "tier_lists"
 end
