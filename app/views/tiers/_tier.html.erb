@@ -1,13 +1,16 @@
-<div id="<%= dom_id tier %>">
 
-    <%= tier.id %>
-    <h2><%= tier.title %></h2>
-    <%= tier.row_order %>
-    
-
-    
-    <div class="actions">
-        <%= link_to "Edit", '#' %>
-        <%= link_to "Destroy", '#', method: :delete, data: { confirm: "Are you sure?" } %>
+<%= turbo_frame_tag "tier-#{tier.id}" do %>
+  <div class="tier">
+    <h3><%= tier.title %></h3>
+    <br>
+  <p>Tier ID: <%= tier.id %></p>
+    <div>
+      <%= link_to 'Edit NF', "edit_tier_path(Tier) "%> |
+      <%= link_to 'Delete', user_tier_list_tier_path(@tier_list.user, @tier_list, tier), data: { "turbo-method": :delete,
+                                            turbo_confirm: "Are you sure you want to delete #{tier.title}?"} %>
     </div>
-</div>
+  </div>
+
+
+
+<% end %>

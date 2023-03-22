@@ -2,7 +2,10 @@
 
 <h1><%= @tier_list.title %></h1>
 
-<%= link_to 'Add Tier', '#' %>
+<div id='new_tier'>
+    <%= render partial: 'tiers/form', locals: { tier: Tier.new } %>
+</div>
+
 <div id="tiers">
     <ul data-controller="sortable">
         <% @tiers.rank(:row_order).each do |tier| %>
@@ -14,5 +17,3 @@
         <% end %>
     </ul>
 </div>
-
-<%# <%= render user_tier_list_tiers_path(@tier_list) %> 

@@ -1,0 +1,17 @@
+<%= form_with(model: [@tier_list.user, @tier_list, @tier_list.tiers.build ]) do |form| %>
+    <%= render 'shared/error_messages', object: form.object %>
+    <% if tier.errors.any? %>
+        <div id="error_explanation" class="bg-red-100 text-red-700">
+            <h2><%= pluralize(tier.errors.count, "error") %> prohibited this tier from being saved:</h2>
+            <ul>
+                <% tier.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <%= form.submit "Add Tier" %>
+<% end %>
