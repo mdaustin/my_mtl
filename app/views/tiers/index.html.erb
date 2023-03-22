@@ -1,0 +1,10 @@
+<%= link_to 'Add Tier', new_user_tier_list_tier(@user, @tier_list) %>
+<div id="tiers">
+    <ul data-controller="sortable">
+        <% @tiers.each do |tier| %>
+            <li data-sortable-update-url="<%= sort_tier_path(tier)%>">
+                <%= render tier %>
+            </li>
+        <% end %>
+    </ul>
+</div>
