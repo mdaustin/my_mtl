@@ -17,4 +17,9 @@ class UsersShowTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_template 'users/show'
   end
+
+  test "should show tier_lists on user page" do
+    get user_path(@active_user)
+    assert_select 'a[href=?]', user_tier_list_path(@active_user, @active_user.tier_lists.first)
+  end
 end
