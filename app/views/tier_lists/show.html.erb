@@ -1,3 +1,18 @@
 <% provide(title: @tier_list.title) %>
 
 <h1><%= @tier_list.title %></h1>
+
+<%= link_to 'Add Tier', '#' %>
+<div id="tiers">
+    <ul data-controller="sortable">
+        <% @tiers.rank(:row_order).each do |tier| %>
+            <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(tier, @tier_list, @tier_list.user)%>
+            <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier)%>">
+
+                <%= render tier %>
+            </li>
+        <% end %>
+    </ul>
+</div>
+
+<%# <%= render user_tier_list_tiers_path(@tier_list) %> 
