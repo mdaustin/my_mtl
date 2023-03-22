@@ -9,3 +9,8 @@ two:
   tier_list: mymtl
   title: SecondTier
   row_order: 2
+
+three:
+  tier_list: mymtl
+  title: ThirdTier
+  row_order: 3
