@@ -11,7 +11,11 @@ Rails.application.routes.draw do
 
   resources :users do 
     resources :tier_lists do 
-      resources :tiers
+      resources :tiers do
+        member do 
+          put :sort
+        end 
+      end
     end
   end
   resources :account_activations, only: [:edit]
