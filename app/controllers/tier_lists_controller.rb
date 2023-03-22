@@ -25,7 +25,7 @@ class TierListsController < ApplicationController
             #redirect_to user_tier_list_path(@user, @tier_list)
             #redirect_to user_tier_lists_path(@tier_list)
         else 
-            flash[:danger] = "A problem occured while creating your teir list."
+            flash[:danger] = "A problem occured while creating your tier list."
             render 'new', status: :unprocessable_entity
         end
     end
