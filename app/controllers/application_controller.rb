@@ -11,15 +11,4 @@ class ApplicationController < ActionController::Base
                 redirect_to login_url, status: :see_other
             end
         end
-
-        # Verifies correct user by redirecting user is tier_list does not belong to the current user
-        def correct_user
-            @tier_list = current_user.tier_lists.find_by(id: params[:id])
-            redirect_to current_user, status: :see_other if @tier_list.nil?
-        end
-        
-        # Gets a user
-        def get_user 
-            @user = User.find(params[:user_id])
-        end
 end
