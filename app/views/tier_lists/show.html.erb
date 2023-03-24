@@ -6,14 +6,14 @@
     <%= render partial: 'tiers/form', locals: { tier: Tier.new } %>
 </div>
 
-<div id="tiers">
-    <ul data-controller="sortable">
+<div >
+    <ul data-controller="sortable" id="tiers">
         <% @tiers.rank(:row_order).each do |tier| %>
             <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(tier, @tier_list, @tier_list.user)%>
-            <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier)%>">
+            <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier)%>
 
                 <%= render tier %>
-            </li>
+            <%# </li> %>
         <% end %>
     </ul>
 </div>

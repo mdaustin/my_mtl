@@ -1,16 +1,15 @@
-
+<li data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier)%>">
 <%= turbo_frame_tag "tier-#{tier.id}" do %>
-  <div class="tier">
-    <h3><%= tier.title %></h3>
-    <br>
-  <p>Tier ID: <%= tier.id %></p>
-    <div>
-      <%= link_to 'Edit NF', "edit_tier_path(Tier) "%> |
+  <div class="tier p-4 bg-white shadow-md rounded-lg">
+    <h3 class="text-xl font-bold text-gray-800 mb-2"><%= tier.title %></h3>
+    <p class="text-gray-600 mb-4">Tier ID: <%= tier.id %></p>
+    <div class="flex items-center space-x-4">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        this is a movie
+      </div>
       <%= link_to 'Delete', user_tier_list_tier_path(@tier_list.user, @tier_list, tier), data: { "turbo-method": :delete,
-                                            turbo_confirm: "Are you sure you want to delete #{tier.title}?"} %>
+                                            turbo_confirm: "Are you sure you want to delete #{tier.title}?"}, class: "inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors" %>
     </div>
   </div>
-
-
-
 <% end %>
+</li>
