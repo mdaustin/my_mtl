@@ -10,6 +10,6 @@ class Movie < ApplicationRecord
 
     # Returns the url for the movie's poster
     def poster_url
-        "https://image.tmdb.org/t/p/w92#{poster_path}"
+        "https://image.tmdb.org/t/p/w154#{poster_path}"
     end       
 end
