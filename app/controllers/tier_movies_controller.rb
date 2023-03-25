@@ -18,22 +18,9 @@ class TierMoviesController < ApplicationController
     end
 
     def sort
-        # debugger
-        # # @tier_movie = TierMovie.find_by(tier_movie_params)
-        # @tier_movie = TierMovie.find(params[:id])
-        # @tier_movie.update(row_order_position: params[:row_order_position], tier_id: params[:tier_id])
-        # head :no_content
-
         @tier_movie = TierMovie.find(params[:id])
         @tier = Tier.find(params[:new_tier_id])
-        puts @tier.inspect
         @tier_movie.update(row_order_position: params[:row_order_position], tier: @tier)
-        # debugger
-        # if @tier_movie.tier_id != params[:tier_id].to_i
-        #     debugger
-        #     @tier_movie.update(tier_id: params[:tier_id], rank: nil)
-        # end
-        # @tier_movie.update(row_order_position: params[:row_order_position])
         head :no_content
     end
 
