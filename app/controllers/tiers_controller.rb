@@ -3,7 +3,7 @@ class TiersController < ApplicationController
     before_action :set_tier_list, only: [:index, :new, :create, :edit, :update, :destroy]
     before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
     before_action :correct_user, only: [:edit, :create, :update, :destroy]
-    
+    before_action :correct_tier_list, only: [:edit, :update, :destroy]
 
     def index 
         @tiers = @tier_list.tiers
@@ -56,10 +56,15 @@ class TiersController < ApplicationController
 
     # Delete /tier_lists/:tier_list_id/tiers/:id
     def destroy
-        debugger
+        if @tier_list_id != @tier.tier_list_id
+            flash[:danger] = "You are not authorized to perform this action."
+            redirect_to current_user, status: :see_other
+        else
+        # debugger
         @tier.destroy
         
         redirect_to user_tier_list_path(@current_user, @tier_list), notice: "Tier was successfully deleted."
+        end
     end
 
 
@@ -91,7 +96,17 @@ class TiersController < ApplicationController
 
         # Verifies correct user by redirecting user 
         def correct_user
+            # unless current_user == @tier.tier_list.user 
+            #     flash[:danger] = "You are not authorized to perform this action."
+            #     redirect_to current_user, status: :see_other
+            # end
             @tier_list = current_user.tier_lists.find_by(id: params[:tier_list_id])
             redirect_to current_user, status: :see_other if @tier_list.nil?
+        end
+
+        # Verifies correct tier_list by redirecting user
+        def correct_tier_list
+            @tier_list = current_user.tier_lists.find_by(id: params[:tier_list_id])
+
         end
 end
