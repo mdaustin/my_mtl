@@ -91,3 +91,5 @@ end
 gem "ranked-model", "~> 0.4.8"
 
 gem "requestjs-rails", "~> 0.0.10"
+
+gem "themoviedb-api", "~> 1.4"
