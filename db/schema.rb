@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_22_130814) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_25_004723) do
+  create_table "movies", force: :cascade do |t|
+    t.integer "tmdb_id"
+    t.string "title"
+    t.text "overview"
+    t.date "release_date"
+    t.integer "runtime"
+    t.string "poster_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tmdb_id"], name: "index_movies_on_tmdb_id", unique: true
+  end
+
   create_table "tier_lists", force: :cascade do |t|
     t.string "title"
     t.text "description"

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+batman:
+  tmdb_id: 268
+  title: Batman
+  overview: Batman must face his most ruthless nemesis when a deformed madman calling himself \"The Joker\" seizes control of Gotham's criminal underworld.
+  release_date: 1989-06-23
+  runtime: 126
+  poster_path: /cij4dd21v2Rk2YtUQbV5kW69WB2.jpg
+
+breathless:
+  tmdb_id: 269
+  title: Breathless
+  overview: A small-time thief steals a car and impulsively murders a motorcycle policeman. Wanted by the authorities, he attempts to persuade a girl to run away to Italy with him.
+  release_date: 1960-03-16
+  runtime: 90
+  poster_path: /9Wx0Wdn2EOqeCZU4SP6tlS3LOml.jpg
