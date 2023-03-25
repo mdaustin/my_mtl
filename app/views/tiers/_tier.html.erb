@@ -7,6 +7,13 @@
     <div class="flex items-center space-x-4">
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 bg-neutral-500 rounded-lg mb-1">
         this is a movie
+        <% tier.movies.each do |movie| %>
+          <div class="bg-gray-100 p-4 rounded-lg mb-1">
+            <img src="<%= movie.poster_url %>" alt="<%= movie.title %> Poster" class="max-w-24 h-auto mb-2 rounded-md">
+            <h4 class="text-md font-semibold text-gray-800"><%= movie.title %></h4>
+            <p class="text-gray-600"><%= movie.release_date %></p>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
