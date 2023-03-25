@@ -10,4 +10,5 @@ class TierMovie < ApplicationRecord
 
    # Needed for ranked_model gem
   ranks :row_order, with_same: :tier_id
+  scope :ordered, -> { rank(:row_order) }
 end

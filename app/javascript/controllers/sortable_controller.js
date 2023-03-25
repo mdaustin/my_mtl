@@ -22,12 +22,13 @@ export default class extends Controller {
     // Stores target tier
     var sortableTierId = event.to.dataset.sortableTierId
     console.log(event.to.dataset.sortableTierId)
+    console.log(sortableTierId)
 
 
 
     // Sends request 
     put(sortableUpdateUrl, {
-      body: JSON.stringify({row_order_position: event.newIndex, tier_id: sortableTierId})
+      body: JSON.stringify({row_order_position: event.newIndex, new_tier_id: sortableTierId})
     })
   }
 }

@@ -5,13 +5,13 @@
     <%= link_to 'Delete', user_tier_list_tier_path(@tier_list.user, @tier_list, tier), data: { "turbo-method": :delete,
                                             turbo_confirm: "Are you sure you want to delete #{tier.title}?"}, class: "inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors" %>
     <div class="flex items-center space-x-4">
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 bg-neutral-500 rounded-lg mb-1">
-        this is a movie
-        <% tier.movies.each do |movie| %>
-          <div class="bg-gray-100 p-4 rounded-lg mb-1">
-            <img src="<%= movie.poster_url %>" alt="<%= movie.title %> Poster" class="max-w-24 h-auto mb-2 rounded-md">
-            <h4 class="text-md font-semibold text-gray-800"><%= movie.title %></h4>
-            <p class="text-gray-600"><%= movie.release_date %></p>
+      <div data-controller="sortable" data-sortable-group-value="tier_movies" data-sortable-tier-id="<%= tier.id %>" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 bg-neutral-500 rounded-lg mb-1 min-h-32 border border-gray-300 p-4 ">
+        <% tier.tier_movies.rank(:row_order).each do |tier_movie| %>      
+        <%# <% tier.movies.rank(:row_order).each do |movie| %> 
+          <div class="bg-gray-100 p-4 rounded-lg mb-1" data-sortable-id="<%= tier_movie.id%>" data-sortable-update-url="<%= sort_user_tier_list_tier_tier_movie_path(@tier_list.user, @tier_list, tier, tier_movie.id)%>">                                                                                                                
+            <img src="<%= tier_movie.movie.poster_url %>" alt="<%= tier_movie.movie.title %> Poster" class="max-w-24 h-auto mb-2 rounded-md">
+            <h4 class="text-md font-semibold text-gray-800"><%= tier_movie.movie.title %></h4>
+            <p class="text-gray-600"><%= tier_movie.movie.release_date %>  <%= tier_movie.movie.id %></p>
           </div>
         <% end %>
       </div>
