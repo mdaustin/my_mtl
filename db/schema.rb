@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_25_004723) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_25_014147) do
   create_table "movies", force: :cascade do |t|
     t.integer "tmdb_id"
     t.string "title"
@@ -30,6 +30,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_25_004723) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tier_lists_on_user_id"
+  end
+
+  create_table "tier_movies", force: :cascade do |t|
+    t.integer "tier_id", null: false
+    t.integer "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "row_order"
+    t.index ["movie_id"], name: "index_tier_movies_on_movie_id"
+    t.index ["tier_id", "movie_id"], name: "index_tier_movies_on_tier_id_and_movie_id", unique: true
+    t.index ["tier_id"], name: "index_tier_movies_on_tier_id"
   end
 
   create_table "tiers", force: :cascade do |t|
@@ -59,5 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_25_004723) do
   end
 
   add_foreign_key "tier_lists", "users"
+  add_foreign_key "tier_movies", "movies"
+  add_foreign_key "tier_movies", "tiers"
   add_foreign_key "tiers", "tier_lists"
 end
