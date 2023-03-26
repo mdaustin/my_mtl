@@ -1,19 +1,21 @@
 <% provide(title: @tier_list.title) %>
+<div class="bg-white shadow-md rounded-lg p-6 mb-8">
+    <h1 class="text-4xl font-bold text-gray-800 mt-2 mb-2 text-center"><%= @tier_list.title %></h1>
+    <p class="text-lg text-gray-600 mb-6 text-center"><%= @tier_list.description %></p>
+    <div id='new_tier' class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Add a new tier</h2>
+        <%= render partial: 'tiers/form', locals: { tier: Tier.new } %>
+    </div>
 
-<h1><%= @tier_list.title %></h1>
+    <div >
+        <ul data-controller="sortable" id="tiers">
+            <% @tiers.rank(:row_order).each do |tier| %>
+                <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(tier, @tier_list, @tier_list.user)%>
+                <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier)%>
 
-<div id='new_tier'>
-    <%= render partial: 'tiers/form', locals: { tier: Tier.new } %>
-</div>
-
-<div >
-    <ul data-controller="sortable" id="tiers">
-        <% @tiers.rank(:row_order).each do |tier| %>
-            <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(tier, @tier_list, @tier_list.user)%>
-            <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier)%>
-
-                <%= render tier %>
-            <%# </li> %>
-        <% end %>
-    </ul>
+                    <%= render tier %>
+                <%# </li> %>
+            <% end %>
+        </ul>
+    </div>
 </div>
