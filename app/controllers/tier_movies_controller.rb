@@ -11,10 +11,15 @@ class TierMoviesController < ApplicationController
     end
 
     def destroy
+        debugger
         @tier = Tier.find(params[:tier_id])
+        puts @tier.inspect
         @tier_movie = @tier.tier_movies.find(params[:id])
         @tier_movie.destroy
-        redirect_to user_tier_list_path(@tier.tier_list)
+
+        puts @tier.tier_list.inspect
+        debugger
+        redirect_to user_tier_list_path(:id => @tier.tier_list.id)
     end
 
     def sort
