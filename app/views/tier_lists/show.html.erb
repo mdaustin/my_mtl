@@ -2,10 +2,14 @@
 <div class="bg-white shadow-md rounded-lg p-6 mb-8">
     <h1 class="text-4xl font-bold text-gray-800 mt-2 mb-2 text-center"><%= @tier_list.title %></h1>
     <p class="text-lg text-gray-600 mb-6 text-center"><%= @tier_list.description %></p>
-    <div id='new_tier' class="bg-white shadow-md rounded-lg p-6 mb-8">
+
+    <% if current_user == @tier_list.user %>
+      <div id='new_tier' class="bg-white shadow-md rounded-lg p-6 mb-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Add a new tier</h2>
         <%= render partial: 'tiers/form', locals: { tier: Tier.new } %>
     </div>
+    <% end %>
+    
 
     <div >
         <ul data-controller="sortable" id="tiers">
@@ -18,4 +22,6 @@
             <% end %>
         </ul>
     </div>
+
+    <%= render partial: "movies/search", locals: { tier_list: @tier_list } %>
 </div>
