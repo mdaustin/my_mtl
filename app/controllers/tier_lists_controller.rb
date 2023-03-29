@@ -8,6 +8,7 @@ class TierListsController < ApplicationController
     end
 
     def show 
+        @user = User.find(params[:user_id])
         @tier_list = TierList.find(params[:id])
         @tiers = @tier_list.tiers.rank(:row_order)
     end

@@ -23,5 +23,5 @@
         </ul>
     </div>
 
-    <%= render partial: "movies/search", locals: { tier_list: @tier_list } %>
+    <%= render 'movies/search', locals: { user: @user, tier_list: @tier_list } %>
 </div>
