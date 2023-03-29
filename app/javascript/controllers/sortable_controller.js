@@ -11,6 +11,11 @@ export default class extends Controller {
     Sortable.create(this.element, {
       onEnd: this.onEnd.bind(this),
       group: this.groupValue,
+      animation: 150,
+      fallbackOnBody: true,
+      swapThreshold: 0.65,
+      pull: true,
+      put: true,
     })
   }
 
