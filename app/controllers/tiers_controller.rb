@@ -1,4 +1,5 @@
 class TiersController < ApplicationController
+    include MoviesHelper
     before_action :set_tier, only: [:show, :edit, :update, :destroy]
     before_action :set_tier_list, only: [:index, :new, :create, :edit, :update, :destroy]
     before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
@@ -75,6 +76,24 @@ class TiersController < ApplicationController
         @tier.update(row_order_position: params[:row_order_position])
         head :no_content
         # debugger
+    end
+
+    def add_movie
+        tmdb_id = params[:movie][:tmdb_id]
+        debugger
+        # Check if the movie already exists in the database
+        movie = Movie.find_by(tmdb_id: tmdb_id)
+        if movie.nil?
+            # If the movie doesn't exist, fetch all details & create it
+            movie = create_movie_from_tmdb_id(tmdb_id)
+        end
+        # Create a new tier_movie
+        if tier_movie = @tier.tier_movies.create!(movies: movie)
+            head :created
+        else
+            flash[:danger] = "A problem occured while adding the movie to your tier."
+            head :unprocessable_entity
+        end
     end
 
 
