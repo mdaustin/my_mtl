@@ -1,4 +1,5 @@
 <%= form_with url: search_movies_path(user_id: @user.id, tier_list_id: @tier_list.id), method: :get, local: true do %>
+  <%= image_tag 'TMDBLogoLong.svg' %>
   <div class="flex items-center">
     <%= label_tag :query, "Search for a movie:", class: "text-lg font-bold text-gray-800 mr-4" %>
     <%= text_field_tag :query, params[:query], class: "border border-gray-300 rounded-md p-2 w-full md:w-3/4" %>
