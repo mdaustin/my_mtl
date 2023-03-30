@@ -1,21 +1,32 @@
 <%= form_with url: search_movies_path(user_id: @user.id, tier_list_id: @tier_list.id), method: :get, local: true do %>
-    <%= text_field_tag :query, params[:query], placeholder: "Search for a movie" %>
-    <%= submit_tag "Search" %>
+  <div class="flex items-center">
+    <%= label_tag :query, "Search for a movie:", class: "text-lg font-bold text-gray-800 mr-4" %>
+    <%= text_field_tag :query, params[:query], class: "border border-gray-300 rounded-md p-2 w-full md:w-3/4" %>
+    <%= submit_tag "Search", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" %>
+  </div>
 <% end %>
 
-<% if defined?(@movies) && @movies.any? %>
-    <div class="bg-white shadow-md rounded-lg p-6 mb-8">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Search Results</h2>
-        <ul>
-            <% @movies.each do |movie| %>
-                <% detailed_movie = movie_details(movie) %>
-                <li>
-                    <% if detailed_movie.poster_path.present? %>
-                    <img src="<%= movie_poster(detailed_movie) %>" alt="<%= detailed_movie.title %> Poster" class="w-12 h-16 object-cover rounded-md transition-transform duration-200 group-hover:scale-110">
-                    <% end %>
-                    <%= detailed_movie.title %> (<%= detailed_movie.release_date %>)
-                </li>
-            <% end %>
-        </ul>
-    </div>
+
+<% if @movies&.any? %>
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mt-8">
+    <% @movies.each do |movie| %>
+      <div class="relative bg-gray-100 p-2 rounded-lg mb-1 group overflow-hidden "
+           data-user-id="<%= @user.id %>"
+           data-tier-list-id="<%= @tier_list.id %>"
+           data-movie-tmdb-id="<%= movie.id %>">
+        <div class="flex flex-col items-center space-y-2">
+          <img src="<%= movie_poster(movie) %>" alt="<%= movie.title %> Poster" class="w-12 h-16 object-cover rounded-md transition-transform duration-200 group-hover:scale-110">
+
+          <div>
+            <h4 class="text-sm font-semibold text-gray-800"><%= movie.title %></h4>
+            <p class="text-xs text-gray-600"><%= movie.release_date %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% elsif params[:query].present? %>
+  <p class="mt-4 text-lg text-gray-800">No movies found for '<%= params[:query] %>'</p>
 <% end %>
+
+

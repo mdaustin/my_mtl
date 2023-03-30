@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         end
         member do 
           put :sort
+          post :add_movie
         end 
       end
     end
