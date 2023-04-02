@@ -17,11 +17,12 @@
                 <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(tier, @tier_list, @tier_list.user)%>
                 <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier)%>
 
-                    <%= render tier %>
+                    <%= render tier unless tier.title == "Search Results" %>
                 <%# </li> %>
             <% end %>
         </ul>
     </div>
-
-    <%= render 'movies/search', locals: { user: @user, tier_list: @tier_list } %>
+    <% if current_user == @tier_list.user %>
+        <%= render 'movies/search', locals: { user: @user, tier_list: @tier_list } %>
+    <% end %>
 </div>
