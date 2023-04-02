@@ -36,4 +36,15 @@ class Movie < ApplicationRecord
         end
         @movies = Movie.all.where(tmdb_id: movie_search.map(&:id))
     end
+
+    def self.create_from_tmdb_id(tmdb_id)
+        movie = Tmdb::Movie.detail(tmdb_id)
+        Movie.create(
+             tmdb_id: movie.id,
+             title: movie.title,
+             overview: movie.overview,
+             release_date: movie.release_date,
+             runtime: movie.runtime,
+             poster_path: movie.poster_path)
+    end
 end
