@@ -1,0 +1,15 @@
+<div class="relative bg-gray-100 p-2 rounded-lg mb-1 group overflow-hidden" data-sortable-id="<%= tier_movie.id %>" data-sortable-update-url="<%= sort_user_tier_list_tier_tier_movie_path(@tier_list.user, @tier_list, tier, tier_movie.id)%>">
+  <%# Delete Tier Link %>
+  <%= link_to user_tier_list_tier_tier_movie_path(@tier_list.user, @tier_list, tier, tier_movie), data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete this movie?"}, class: "absolute top-0 right-0 p-2 group-hover:opacity-100 opacity-0 transition-opacity duration-200" do %>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  <% end %>
+  <div class="flex flex-col items-center space-y-2">
+    <img src="<%= tier_movie.movie.poster_url %>" alt="<%= tier_movie.movie.title %> Poster" class="w-12 h-16 object-cover rounded-md transition-transform duration-200 group-hover:scale-110">
+    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+      <h4 class="text-sm font-semibold text-gray-800"><%= tier_movie.movie.title %></h4>
+      <p class="text-xs text-gray-600"><%= tier_movie.movie.release_date %>  <%= tier_movie.movie.id %></p>
+    </div>
+  </div>
+</div>    
