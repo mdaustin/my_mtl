@@ -4,11 +4,6 @@ class TierMoviesController < ApplicationController
         @tier_movie = TierMovie.new
     end
 
-    def create
-        @tier = Tier.find(params[:tier_id])
-        @tier_movie = @tier.tier_movies.create(tier_movie_params)
-        redirect_to user_tier_list_path(@tier.tier_list)
-    end
 
     def destroy
         @tier = Tier.find(params[:tier_id])
@@ -23,7 +18,6 @@ class TierMoviesController < ApplicationController
         @tier_movie.update(row_order_position: params[:row_order_position], tier: @tier)
         head :no_content
     end
-
 
     private
         # Only allow a list of trusted parameters through.
