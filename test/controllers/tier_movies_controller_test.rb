@@ -35,5 +35,11 @@ class TierMoviesControllerTest < ActionDispatch::IntegrationTest
         assert_not_equal old_tier, @tier_movie.reload.tier
     end
 
+    test "should destroy tier movie if tier is destoryed" do
+        tier = @tier_movie.tier
+        assert_difference('TierMovie.count', -1) do
+            tier.destroy
+        end
+    end
 
 end
