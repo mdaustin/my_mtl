@@ -53,4 +53,12 @@ class TiersControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to user_tier_list_path(@tier_list.user, @tier_list)
   end
+
+  test "should destroy tier when logged in as correct user" do
+    log_in_as(@user)
+    assert_difference 'Tier.count', -1 do
+      delete user_tier_list_tier_path(@user, @tier_list, @tier)
+    end
+    assert_redirected_to user_tier_list_path(@tier_list.user, @tier_list)
+  end
 end

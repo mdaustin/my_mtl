@@ -57,7 +57,7 @@ class TiersController < ApplicationController
 
     # Delete /tier_lists/:tier_list_id/tiers/:id
     def destroy
-        if @tier_list_id != @tier.tier_list_id
+        if @tier_list.id != @tier.tier_list_id
             flash[:danger] = "You are not authorized to perform this action."
             redirect_to current_user, status: :see_other
         else
