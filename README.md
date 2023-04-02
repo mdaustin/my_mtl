@@ -1,24 +1,43 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is called MyMTL (movie tier list). This is a Ruby on Rails 7 app, that allows users to 
+Sign up and create their own movie tier lists. This app features TMDB API integration and to utilize it you will need to setup
+an env variable with your API Key. 
 
-Things you may want to cover:
+## Getting Started 
+To get started with the app, clone the repo then install the needed gems:
 
-* Ruby version
+Versions:
+Ruby: 3.1.2
+Rails: 7.0.4.3
+Development Enviroment needs SQLite3
+```
+$ gem install bundler
+$ bundle config set --local without 'production'
+$ bundle install
 
-* System dependencies
+```
 
-* Configuration
+Next, migrate the DB
 
-* Database creation
+```
+$ rails db:migrate
+```
 
-* Database initialization
+Then, migrate the test DB
 
-* How to run the test suite
+```
+$ rails db:migrate RAILS_env=test
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Finally, run the test suite to verify that everything is working correctly:
 
-* Deployment instructions
+```
+$ rails test
+```
 
-* ...
+If all passes, you'll be ready to run the app in a local server:
+
+``` 
+$ rails server
+```
