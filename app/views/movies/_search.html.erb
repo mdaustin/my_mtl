@@ -7,27 +7,9 @@
   </div>
 <% end %>
 
-
 <% if @movies&.any? %>
-  <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mt-8">
-    <% @movies.each do |movie| %>
-      <div class="relative bg-gray-100 p-2 rounded-lg mb-1 group overflow-hidden "
-           data-user-id="<%= @user.id %>"
-           data-tier-list-id="<%= @tier_list.id %>"
-           data-movie-tmdb-id="<%= movie.id %>">
-        <div class="flex flex-col items-center space-y-2">
-          <img src="<%= movie_poster(movie) %>" alt="<%= movie.title %> Poster" class="w-12 h-16 object-cover rounded-md transition-transform duration-200 group-hover:scale-110">
-
-          <div>
-            <h4 class="text-sm font-semibold text-gray-800"><%= movie.title %></h4>
-            <p class="text-xs text-gray-600"><%= movie.release_date %></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <%= render partial: 'tiers/tier', locals: {tier: @search_results_tier, tier_list: @tier_list } %>
+  <%# <%= render partial: 'tiers/tier', locals: { tier: @search_results_tier, movies: @movies, user: @user, tier_list: @tier_list }  %>
 <% elsif params[:query].present? %>
   <p class="mt-4 text-lg text-gray-800">No movies found for '<%= params[:query] %>'</p>
 <% end %>
-
-
