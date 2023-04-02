@@ -1,0 +1,15 @@
+<div class="relative top-0 left-1/2 transform -translate-x-1/2 -translate-y-full z-50" data-hovercard-target="card">
+    <div data-tooltip-arrow class="absolute top-[-6rem] left-0 z-50 bg-white shadow-lg transform -translate-y-full mt-[-500] origin-top-left">
+        <div class="flex flex-col space-y-2 space-x-3 items-center w-64">
+            <div class="flex-shrink-0">
+                <img src="<%= @tier_movie.movie.poster_url("w500") %>" alt="<%= @tier_movie.movie.title %> Poster" 
+                     class="w-48 h-64 object-cover rounded-md transition-transform duration-200 group-hover:scale-110 p-4">
+            </div>
+            <div class="flex-1 p-4">
+                <h4 class="text-sm font-semibold text-gray-800"><%= @tier_movie.movie.title %></h4>
+                <p class="text-xs text-gray-600"><%= @tier_movie.movie.release_date %> | <%= @tier_movie.movie.runtime %> mins</p>
+                <p class="text-xs text-gray-600 mt-1"><%= @tier_movie.movie.overview %></p>
+            </div>        
+        </div>    
+    </div>
+</div>

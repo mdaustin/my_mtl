@@ -9,8 +9,8 @@ class Movie < ApplicationRecord
     validates :runtime, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
     # Returns the url for the movie's poster
-    def poster_url
-        "https://image.tmdb.org/t/p/w154#{poster_path}"
+    def poster_url(size = "w154")
+        "https://image.tmdb.org/t/p/#{size}#{poster_path}"
     end       
 
     def self.search(params)

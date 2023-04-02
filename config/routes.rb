@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     resources :tier_lists do 
       resources :tiers do
         resources :tier_movies, only: [:create, :destroy, :update] do
+          member do
+            get :hovercard
+          end
           member do 
             put :sort
           end 

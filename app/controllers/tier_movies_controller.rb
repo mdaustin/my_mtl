@@ -19,6 +19,12 @@ class TierMoviesController < ApplicationController
         head :no_content
     end
 
+    def hovercard
+        @tier_movie = TierMovie.find(params[:id])
+        
+        render layout: false
+    end
+
     private
         # Only allow a list of trusted parameters through.
         def tier_movie_params
