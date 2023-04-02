@@ -13,14 +13,13 @@ Rails.application.routes.draw do
   resources :users do 
     resources :tier_lists do 
       resources :tiers do
-        resources :tier_movies, only: [:create, :destroy] do
+        resources :tier_movies, only: [:create, :destroy, :update] do
           member do 
             put :sort
           end 
         end
         member do 
           put :sort
-          post :add_movie
         end 
       end
     end
