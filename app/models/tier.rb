@@ -1,6 +1,6 @@
 class Tier < ApplicationRecord
   include RankedModel
-  belongs_to :tier_list
+  belongs_to :tier_list, touch: true
   has_many :tier_movies, dependent: :destroy
   has_many :movies, through: :tier_movies
   

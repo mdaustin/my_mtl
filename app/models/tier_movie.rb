@@ -1,6 +1,6 @@
 class TierMovie < ApplicationRecord
   include RankedModel
-  belongs_to :tier
+  belongs_to :tier, touch: true
   belongs_to :movie
 
   validates :tier_id, presence: true
