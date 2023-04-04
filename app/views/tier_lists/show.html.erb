@@ -12,7 +12,8 @@
     
 
     <div >
-        <ul data-controller="sortable" id="tiers">
+        <% if current_user == @tier_list.user %>
+          <ul data-controller="sortable" id="tiers">
             <% @tiers.rank(:row_order).each do |tier| %>
                 <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(tier, @tier_list, @tier_list.user)%>
                 <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier)%>
@@ -20,7 +21,15 @@
                     <%= render tier unless tier.title == "Search Results" %>
                 <%# </li> %>
             <% end %>
-        </ul>
+           </ul>
+        <% else %>
+          <ul>
+            <% @tiers.rank(:row_order).each do |tier| %>
+                <%= render tier unless tier.title == "Search Results" %>
+            <% end %>
+          </ul>
+        <% end %>
+        
     </div>
     <% if current_user == @tier_list.user %>
         <%= render 'movies/search', locals: { user: @user, tier_list: @tier_list } %>
