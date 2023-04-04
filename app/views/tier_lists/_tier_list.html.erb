@@ -1,9 +1,13 @@
-<div id="<%= dom_id tier_list %>">
-    <li>
-        <%= link_to "View #{tier_list.title}", user_tier_list_path(@user, tier_list) %>
-        <% if current_user?(tier_list.user) %>
-            <%= link_to 'update', edit_user_tier_list_path(@user, tier_list) %>
-            <%= link_to "delete", [@user, tier_list], data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete your tier list #{tier_list.title}?"} %>
-        <% end %>
-    </li>
+<div id="<%= dom_id tier_list %>" class="bg-white p-4 rounded-md shadow-md mb-4">
+  <div class="flex items-center justify-between">
+    <h3 class="text-lg font-semibold text-gray-800">
+      <%= link_to tier_list.title, user_tier_list_path(@user, tier_list), class: "text-indigo-600 hover:text-indigo-500" %>
+    </h3>
+    <% if current_user?(tier_list.user) %>
+      <div class="flex items-center space-x-2 p-4">
+        <%= link_to 'Update', edit_user_tier_list_path(@user, tier_list), class: "text-sm text-gray-600 hover:text-gray-800" %>
+        <%= link_to 'Delete', [@user, tier_list], data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete your tier list #{tier_list.title}?"}, class: "text-sm text-red-600 hover:text-red-800" %>
+      </div>
+    <% end %>
+  </div>
 </div>

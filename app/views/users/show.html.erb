@@ -1,18 +1,29 @@
 <%= provide(:title, @user.username ) %>
 
-<%= @user.username %>, <%= @user.email %>
+<div class="container mx-auto px-4">
+  <div class="text-center">
+    <h1 class="text-3xl font-semibold text-gray-800 my-6"><%= @user.username %></h1>
 
+  </div>
 
+  <% if current_user?(@user) %>
+    <div class="text-center my-4">
+      <%= link_to 'New Tier List', new_user_tier_list_path(@user), class: "bg-blue-500 text-white px-4 py-2 rounded shadow-md hover:bg-blue-600 transition-colors duration-200" %>
+    </div>
+  <% end %>
 
-<% if current_user?(@user) %>
-  <%= link_to 'New Tier List',  new_user_tier_list_path(@user) %>
-<% end %>
-<% if @user.tier_lists.any? %>
-  <h3> Tier Lists (<%= @user.tier_lists.count %>)</h3>
+  <% if @user.tier_lists.any? %>
+    <h3 class="text-2xl font-semibold text-gray-800 my-4 text-center">Tier Lists (<%= @user.tier_lists.count %>)</h3>
 
-  <ol>
-    <%= render @tier_lists %>
-  </ol>
+    <ol class="space-y-4">
+      <%= render @tier_lists %>
+    </ol>
 
-  <%= will_paginate @tier_lists %>
-<% end %>
+    <div class="my-4">
+      <%= will_paginate @tier_lists %>
+    </div>
+
+  <% else %>
+    <p class="text-xl text-gray-600">No Tier Lists</p>
+  <% end %>
+</div>

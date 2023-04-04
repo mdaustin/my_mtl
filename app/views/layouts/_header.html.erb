@@ -26,12 +26,13 @@
       <div class="hidden md:flex items-center space-x-1">
 
         <% if logged_in? %>
-        <%= link_to 'Profile', current_user %>
-        <%= link_to 'Settings', edit_user_path(current_user) %>
-        <%= link_to 'Log out', logout_path, data: {"turbo-method": :delete } %>
+        <%= link_to 'My Tier Lists', current_user, class: "py-3 px-3 text-gray-700" %>
+        <%= link_to 'Profile', current_user, class: "py-3 px-3 text-gray-700" %>
+        <%= link_to 'Settings', edit_user_path(current_user), class: "py-3 px-3 text-gray-700" %>
+        <%= link_to 'Log out', logout_path, data: {"turbo-method": :delete }, class: "py-3 px-3 text-gray-700" %>
         <% else %>
-        <a href="<%= login_path%>" class="py-5 px-3">Log in</a>
-        <a href="<%= signup_path%>" class="py-5 px-3 rounded-md hover:bg-gray-600">Sign up</a>
+        <a href="<%= login_path%>" class="py-5 px-3 text-gray-700">Log in</a>
+        <a href="<%= signup_path%>" class="py-5 px-3 rounded-md text-gray-700 hover:bg-gray-600">Sign up</a>
         <% end %>
 
        

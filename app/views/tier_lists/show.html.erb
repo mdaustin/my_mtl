@@ -11,7 +11,7 @@
     <% end %>
     
 
-    <div >
+    <div>
         <% if current_user == @tier_list.user %>
           <ul data-controller="sortable" id="tiers">
             <% @tiers.rank(:row_order).each do |tier| %>

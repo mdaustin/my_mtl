@@ -13,7 +13,8 @@
       </div>
       
       <div class="flex items-center space-x-4">
-        <div data-controller="sortable" data-sortable-group-value="tier_movies" data-sortable-tier-id="<%= tier.id %>" class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 bg-neutral-500 rounded-lg mb-1 min-h-32 border border-gray-300 p-4 w-full h-full">
+        <div data-controller="sortable" data-sortable-group-value="tier_movies" data-sortable-tier-id="<%= tier.id %>" 
+            class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-8 bg-neutral-500 rounded-lg mb-1 min-h-32 border border-gray-300 p-4 w-full h-full">
           <% tier.tier_movies.rank(:row_order).each do |tier_movie| %>  
             <%= render partial: "tier_movies/tier_movie", locals: { tier_movie: tier_movie, tier: tier } %>    
           <% end %>
@@ -32,7 +33,7 @@
         </div>
         
         <div class="flex items-center space-x-4">
-          <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 bg-neutral-500 rounded-lg mb-1 min-h-32 border border-gray-300 p-4 w-full h-full">
+          <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-8 bg-neutral-500 rounded-lg mb-1 min-h-32 border border-gray-300 p-4 w-full h-full">
             <% tier.tier_movies.rank(:row_order).each do |tier_movie| %>  
               <%= render partial: "tier_movies/tier_movie", locals: { tier_movie: tier_movie, tier: tier } %>    
             <% end %>
