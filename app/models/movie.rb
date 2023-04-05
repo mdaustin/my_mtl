@@ -31,7 +31,7 @@ class Movie < ApplicationRecord
                 end
 
             else
-                flash.now[:danger] = "No results found"
+                @movies = Movie.none
             end
         end
         @movies = Movie.all.where(tmdb_id: movie_search.map(&:id))
