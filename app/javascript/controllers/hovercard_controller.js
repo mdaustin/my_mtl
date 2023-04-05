@@ -6,6 +6,11 @@ export default class extends Controller {
   static values = { url: String };
 
   show() {
+    // Clear any existing timeout
+    if (this.timeoutId) { clearTimeout(this.timeoutId); }
+
+    // Set a timeout with the desired delay 
+    this.timeoutId = setTimeout(() => {
     if (this.hasCardTarget) {
       this.cardTarget.classList.remove("hidden")
     } else {
@@ -17,15 +22,23 @@ export default class extends Controller {
           this.element.appendChild(fragment);
       });
     }
+    }, 500);
   }
 
   hide() {
+
+    // Clear any existing timeout
+    if (this.timeoutId) { clearTimeout(this.timeoutId); }
+
     if (this.hasCardTarget) {
       this.cardTarget.classList.add("hidden")
     }
   }
 
   disconnect() {
+    // Clear any existing timeout
+    if (this.timeoutId) { clearTimeout(this.timeoutId); }
+
     if (this.hasCardTarget) {
       this.cardTarget.remove();
     }
