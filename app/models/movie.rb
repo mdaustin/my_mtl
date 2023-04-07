@@ -19,6 +19,7 @@ class Movie < ApplicationRecord
 
             if movie_search.present?
                 movie_search.each do |movie|
+                    begin
                     movie = Movie.find_or_create_by(tmdb_id: movie.id) do |m|
                         movie_with_details = Tmdb::Movie.detail(movie.id)
                         m.tmdb_id = movie_with_details.id
@@ -28,8 +29,11 @@ class Movie < ApplicationRecord
                         m.runtime = movie_with_details.runtime
                         m.poster_path = movie_with_details.poster_path
                     end
+                    rescue Tmdb::Error => e 
+                        puts "Error fetching movie details for movie with TMDB ID #{movie.id}: #{e.message}"
+                        next # continue to the next movie
+                    end
                 end
-
             else
                 @movies = Movie.none
             end
