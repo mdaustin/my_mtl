@@ -4,6 +4,7 @@
   <div class="text-center">
     <h1 class="text-3xl font-semibold text-gray-800 my-6"><%= @user.username %></h1>
 
+    <%= render 'shared/user_stats' %>
   </div>
 
   <% if current_user?(@user) %>
