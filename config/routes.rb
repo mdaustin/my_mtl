@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
 
   resources :users do 
+    member do 
+      get :following, :followers
+    end
     resources :tier_lists do 
       resources :tiers do
         resources :tier_movies, only: [:create, :destroy, :update] do
