@@ -102,6 +102,11 @@ class User < ApplicationRecord
         following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
         TierList.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
     end
+
+    # Returns the users total movie count 
+    def total_ranked_movie_count
+        tier_lists.joins(tiers: :movies).where.not(tiers: { title: "Search Results" }).count
+    end
     private
         # Converts email to all lowercase
         def downcase_email

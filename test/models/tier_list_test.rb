@@ -25,4 +25,11 @@ class TierListTest < ActiveSupport::TestCase
     @tier_list.description = nil
     assert_not @tier_list.valid?
   end
+
+  test "should count movies on tier list" do
+    tier_list = tier_lists(:mymtl)
+    assert_equal tier_list.total_movie_count, 2
+
+  end
+
 end

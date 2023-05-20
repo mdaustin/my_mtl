@@ -92,4 +92,9 @@ class UserTest < ActiveSupport::TestCase
     user.follow(user)
     assert_not user.following?(user)
   end
+
+  test "should count number of ranked movies" do 
+    user = users(:matthew)
+    assert_equal user.total_ranked_movie_count, 2
+  end
 end

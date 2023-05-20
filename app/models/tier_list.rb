@@ -9,4 +9,9 @@ class TierList < ApplicationRecord
   def search_results_tier
     tiers.find_or_create_by(title: "Search Results")
   end
+
+  # Count the number of movies on the tier list
+  def total_movie_count
+    tiers.where.not(title: "Search Results").joins(:movies).count
+  end
 end

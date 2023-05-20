@@ -1,0 +1,35 @@
+<% provide(:title, @title) %>
+<div>
+    <aside>
+        <section>
+            <h1><%= @user.username %></h1>
+            <span><%= link_to "view my profile", @user %></span>
+            <span><strong>Tier Lists</strong> <%= @user.tier_lists.count %></span>
+            <span><strong>Movies Ranked</strong> <%= @user.total_ranked_movie_count %></span>
+        </section>
+
+        <section>
+            <%= render 'shared/user_stats' %>
+
+            <% if @users.any? %>
+                <div>
+                    <% @users.each do |user| %>
+                        <div>
+                            <%= link_to user.username, user %>
+                        </div>
+                    <% end %>                    
+                </div>
+            <% end %>
+        </section>
+    </aside>
+
+    <div>
+        <h1><%= @title %></h1>
+        <% if @users.any? %>
+            <ul>
+                <%= render @users %>
+            </ul>
+            <%= will_paginate %>
+        <% end %>
+    </div>
+</div>
