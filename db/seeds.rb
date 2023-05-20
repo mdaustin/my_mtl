@@ -29,6 +29,16 @@ if User.count == 0
     end
 end
 
+# Generate 50 relationships
+if Relationship.count == 0
+    users = User.all
+    user = users.first
+    following = users[2..50]
+    followers = users[3..40]
+    following.each { |followed| user.follow(followed) }
+    followers.each { |follower| follower.follow(user) }
+end
+
 # Generate 3 tier lists for the first user
 if TierList.count == 0
     user = User.first
