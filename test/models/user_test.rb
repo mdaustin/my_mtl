@@ -97,4 +97,24 @@ class UserTest < ActiveSupport::TestCase
     user = users(:matthew)
     assert_equal user.total_ranked_movie_count, 2
   end
+
+  test "feed should have the right tier_lists" do
+    matthew = users(:matthew)
+    archer = users(:archer)
+    lana = users(:lana)
+    # Tier lists from followed user
+    lana.tier_lists.each do |tier_list_following|
+      assert matthew.feed.include?(tier_list_following)
+    end
+
+    # Tier lists from self
+    matthew.tier_lists.each do |tier_list_self|
+      assert matthew.feed.include?(tier_list_self)
+    end
+
+    # Tier lists from unfollowed user
+    archer.tier_lists.each do |tier_list_unfollowed|
+      assert_not matthew.feed.include?(tier_list_unfollowed)
+    end
+  end
 end

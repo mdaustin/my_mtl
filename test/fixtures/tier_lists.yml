@@ -14,3 +14,8 @@ archermtl:
   title: ArchersList
   description: Its a movie list
   user: archer
+
+lanamtl:
+  title: LanaList
+  description: Its a movie list
+  user: lana
