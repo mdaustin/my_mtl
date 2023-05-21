@@ -2,6 +2,11 @@
 <div class="bg-white shadow-md rounded-lg p-6 mb-8">
     <h1 class="text-4xl font-bold text-gray-800 mt-2 mb-2 text-center"><%= @tier_list.title %></h1>
     <p class="text-lg text-gray-600 mb-6 text-center"><%= @tier_list.description %></p>
+    <p class="text-lg text-gray-600 mb-6 text-center">
+      Total Runtime: <%= distance_of_time_in_words(@tier_list.total_runtime.minutes) %>
+       | <%= @tier_list.total_runtime_hours %> hours
+    </p>
+    
 
     <% if current_user == @tier_list.user %>
       <div id='new_tier' class="bg-white shadow-md rounded-lg p-6 mb-8">

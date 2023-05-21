@@ -14,4 +14,14 @@ class TierList < ApplicationRecord
   def total_movie_count
     tiers.where.not(title: "Search Results").joins(:movies).count
   end
+
+  # Get the total runtime of all movies on the tier list
+  def total_runtime
+    tiers.where.not(title: "Search Results").joins(:movies).sum(:runtime)
+  end
+
+  # Get total runtime in hours
+  def total_runtime_hours
+    total_runtime / 60
+  end
 end

@@ -1,5 +1,5 @@
 
-<div class="relative bg-gray-100 p-2 rounded-lg mb-1 group" data-sortable-id="<%= tier_movie.id %>" data-sortable-update-url="<%= sort_user_tier_list_tier_tier_movie_path(@tier_list.user, @tier_list, tier, tier_movie.id)%>">
+<div class="relative bg-gray-100 p-2 rounded-lg mb-1 group cursor-grab active:cursor-grabbing" data-sortable-id="<%= tier_movie.id %>" data-sortable-update-url="<%= sort_user_tier_list_tier_tier_movie_path(@tier_list.user, @tier_list, tier, tier_movie.id)%>">
   <%# Delete Tier Link %>
   <% if current_user == @tier_list.user %>
     <%= link_to user_tier_list_tier_tier_movie_path(@tier_list.user, @tier_list, tier, tier_movie), data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete this movie?"}, class: "text-red-600 absolute top-0 right-0 p-2 group-hover:opacity-100 opacity-0 transition-opacity duration-200 z-10" do %>
