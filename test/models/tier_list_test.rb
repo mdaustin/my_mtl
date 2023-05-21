@@ -32,4 +32,13 @@ class TierListTest < ActiveSupport::TestCase
 
   end
 
+  test "should sum runtime of movies on tier list" do
+    tier_list = tier_lists(:mymtl)
+    assert_equal tier_list.total_runtime, 216
+  end
+
+  test "should sum runtime of movies on tier list in hours" do
+    tier_list = tier_lists(:mymtl)
+    assert_equal tier_list.total_runtime_hours, 3
+  end
 end
