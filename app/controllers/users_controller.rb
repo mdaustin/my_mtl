@@ -8,6 +8,15 @@ class UsersController < ApplicationController
     @users = User.where(activated: true).paginate(page: params[:page])
   end 
 
+  def search 
+    @users = User.search(params[:search]).page(params[:page])
+    
+    respond_to do |format|
+      format.turbo_stream
+      format.html { render :index, status: :unprocessable_entity }
+    end
+  end
+
   def show
     @user = User.find(params[:id])
     @tier_lists = @user.tier_lists.paginate(page: params[:page])

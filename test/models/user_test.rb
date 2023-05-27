@@ -117,4 +117,15 @@ class UserTest < ActiveSupport::TestCase
       assert_not matthew.feed.include?(tier_list_unfollowed)
     end
   end
+
+  test "should search users by username" do
+    matthew = users(:matthew)
+    archer = users(:archer)
+    lana = users(:lana)
+
+    assert_equal User.search("matthew"), [matthew]
+    assert_equal User.search("archer"), [archer]
+    assert_equal User.search("lana"), [lana]
+    assert_equal User.search(""), User.all
+  end
 end

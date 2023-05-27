@@ -107,6 +107,16 @@ class User < ApplicationRecord
     def total_ranked_movie_count
         tier_lists.joins(tiers: :movies).where.not(tiers: { title: "Search Results" }).count
     end
+
+    # Seaches User by username
+    def User.search(search)
+        if search
+            User.where('username LIKE ?', "%#{search}%")
+        else
+            User.all
+        end
+    end
+
     private
         # Converts email to all lowercase
         def downcase_email
