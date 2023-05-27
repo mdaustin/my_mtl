@@ -1,0 +1,7 @@
+<turbo-frame id="search_results">
+  <% if @movies&.any? %>
+    <%= render partial: 'tiers/tier', locals: {tier: @search_results_tier, tier_list: @tier_list } %>
+  <% elsif params[:query].present? %>
+    <p class="mt-4 text-lg text-gray-800">No movies found for '<%= params[:query] %>'</p>
+  <% end %>
+</turbo-frame>

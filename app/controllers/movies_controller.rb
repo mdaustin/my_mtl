@@ -1,6 +1,5 @@
 class MoviesController < ApplicationController
     def search 
-
         query = params[:query]
         if query.present?
             # Creates movie objects if they don't exist
@@ -23,7 +22,11 @@ class MoviesController < ApplicationController
             @search_results_tier.tier_movies.create(movie: movie)
         end
 
-        render 'tier_lists/show'
+        respond_to do |format|
+            format.turbo_stream
+            format.html { render 'tier_lists/show' }
+        end
+        # render 'tier_lists/show'
         # render user_tier_list_path(@user, @tier_list)
     end
 end
