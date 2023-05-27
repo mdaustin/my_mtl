@@ -1,5 +1,6 @@
 <% if current_user == @tier_list.user %>
-  <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier) %>">
+  <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier) %>"
+      class="list-none">
   <%= turbo_frame_tag "tier-#{tier.id}" do %>
     <div class="tier p-4 bg-white-100 shadow-md rounded-lg mb-4">
       <div class="flex justify-between">
