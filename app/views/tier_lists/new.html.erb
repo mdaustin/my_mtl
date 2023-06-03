@@ -1,9 +1,9 @@
-<h1>New tier list</h1>
+<h1 class="dark:text-white">New tier list</h1>
 
 <%= render "form", tier_list: @tier_list %>
 
 <br>
 
 <div>
-  <%= link_to "Back to tier lists", user_tier_lists_path %>
+  <%= link_to "Back to tier lists", user_tier_lists_path, class: "dark:text-slate-400 hover:text-slate-400 active:text-slate-500" %>
 </div>

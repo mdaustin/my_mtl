@@ -1,16 +1,16 @@
 <%= form_with(model: @user) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
 
-    <%= f.label :username %>
+    <%= f.label :username, class: "dark:text-slate-400" %>
     <%= f.text_field :username, placeholder: "Username", class: 'relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
 
-    <%= f.label :email %>
+    <%= f.label :email, class: "dark:text-slate-400" %>
     <%= f.email_field :email, placeholder: "Email", class: 'relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
 
-    <%= f.label :password%>
+    <%= f.label :password, class: "dark:text-slate-400" %>
     <%= f.password_field :password, placeholder: "Password", class: 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
 
-    <%= f.label :password_confirmation %>
+    <%= f.label :password_confirmation, class: "dark:text-slate-400" %>
     <%= f.password_field :password_confirmation, placeholder: "Password Confirmation", class: 'relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm' %>
 
     <%= f.submit yield(:button_text), class: 'group relative flex w-full justify-center
