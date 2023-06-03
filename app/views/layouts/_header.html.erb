@@ -1,5 +1,5 @@
 <!-- navbar -->
-<nav class="bg-gray-800">
+<nav class="bg-gray-800 sticky top-0 z-50">
   <%# Containment Div %>
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between">
@@ -32,8 +32,8 @@
         <%= link_to 'Settings', edit_user_path(current_user), class: "py-3 px-3 text-gray-700 hover:text-gray-600 focus:text-gray-500" %>
         <%= link_to 'Log out', logout_path, data: {"turbo-method": :delete }, class: "py-3 px-3 text-gray-700 hover:text-gray-600 focus:text-gray-500" %>
         <% else %>
-        <a href="<%= login_path%>" class="py-5 px-3 text-gray-700">Log in</a>
-        <a href="<%= signup_path%>" class="py-5 px-3 rounded-md text-gray-700 hover:bg-gray-600">Sign up</a>
+        <a href="<%= login_path%>" class="py-5 px-3 text-gray-700 hover:text-gray-600 focus:text-gray-500">Log in</a>
+        <a href="<%= signup_path%>" class="py-5 px-3 rounded-md text-gray-700 hover:text-gray-600 focus:text-gray-500">Sign up</a>
         <% end %>
 
        
@@ -44,24 +44,29 @@
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hidden">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
       </div>
     </div>
   </div>
 
   <!-- mobile menu -->
-  <div id="mobile-menu" class="mobile-menu hidden">
+  <div id="mobile-menu" class="mobile-menu hidden md:hidden">
     <%= link_to 'Home', root_path, class: "block py-2 px-4 text-sm hover bg-gray-200" %>
     <%= link_to 'Help', help_path, class: "block py-2 px-4 text-sm hover bg-gray-200" %>
     <div class="w-full border-t border-gray-300"></div>
 
     <% if logged_in? %>
-      <%= link_to 'Profile', current_user %>
-      <%= link_to 'Settings', edit_user_path(current_user) %>
-      <%= link_to 'Log out', logout_path, data: {"turbo-method": :delete } %>     
+      <%= link_to 'Users', users_path, class: "block py-2 px-4 text-sm hover bg-gray-200" %>
+      <%= link_to 'My Tier Lists', current_user, class: "block py-2 px-4 text-sm hover bg-gray-200" %>
+      <%= link_to 'Profile', current_user, class: "block py-2 px-4 text-sm hover bg-gray-200" %>
+      <%= link_to 'Settings', edit_user_path(current_user), class: "block py-2 px-4 text-sm hover bg-gray-200" %>
+      <%= link_to 'Log out', logout_path, data: {"turbo-method": :delete }, class: "block py-2 px-4 text-sm hover bg-gray-200"%>     
     <% else %>
     <%= link_to 'Log in', login_path, class: "block py-2 px-4 text-sm hover bg-gray-200" %>
-    <%= link_to 'Sign up', signup_path %>
+    <%= link_to 'Sign up', signup_path, class: "block py-2 px-4 text-sm hover bg-gray-200" %>
     <% end %>
   </div>
 </nav>
