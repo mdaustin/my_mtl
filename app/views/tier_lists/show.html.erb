@@ -1,6 +1,6 @@
 <% provide(title: @tier_list.title) %>
 <div class="bg-white shadow-md rounded-lg p-6 mb-8">
-    <h1 class="text-4xl font-bold text-gray-800 dark:text-white mt-2 mb-2 text-center"><%= @tier_list.title %></h1>
+    <h1 class="text-4xl font-bold text-gray-800 mt-2 mb-2 text-center"><%= @tier_list.title %></h1>
     <p class="text-lg text-gray-600 dark:text-slate-400 mb-6 text-center"><%= @tier_list.description %></p>
     <p class="text-lg text-gray-600 dark:slate-400 mb-6 text-center">
       Total Runtime: <%= distance_of_time_in_words(@tier_list.total_runtime.minutes) %>
