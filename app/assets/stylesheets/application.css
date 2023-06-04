@@ -21,3 +21,28 @@
     border-width: 2rem;
     border-color: white transparent transparent transparent;
   }
+
+  div.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  div.pagination * {
+    --tw-text-opacity: 1;
+    color: rgb(55 65 81/var(--tw-text-opacity));
+  }
+  div.pagination a:hover {
+    --tw-text-opacity: 1;
+    color: rgb(17 24 39/var(--tw-text-opacity));
+  }
+  body.dark\:bg-slate-800 div.pagination * {
+    --tw-text-opacity: 1;
+    color: rgb(148 163 184/var(--tw-text-opacity));
+  }
+  body.dark\:bg-slate-800 div.pagination a:hover {
+    --tw-text-opacity: 1;
+    color: rgb(75 85 99/var(--tw-text-opacity));
+  }
+  div.pagination *.current {
+    font-weight: bold;
+  }
