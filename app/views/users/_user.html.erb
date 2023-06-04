@@ -1,4 +1,4 @@
-<li class="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 py-5 sm:flex-nowrap">
+<li class="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 py-5 sm:flex-nowrap bg-white p-4 rounded-md shadow-md mb-4">
     <%= link_to user.username, user, class: "text-blue-500 hover:underline" %>
     <% if current_user.admin? && !current_user?(user) %>
         <%= link_to 'delete', user, data: { "turbo-frame": "search_results",
