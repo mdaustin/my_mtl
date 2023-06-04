@@ -8,7 +8,7 @@
       </p>
     </div>
 
-    <%= form_with(url: login_path, scope: :session) do |f| %>
+    <%= form_with(url: login_path, scope: :session, class: "flex flex-col gap-2") do |f| %>
 
       <%= f.label :email, class: "dark:text-slate-400" %>
       <%= f.email_field :email, placeholder: "email", class: "relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
