@@ -4,6 +4,11 @@ This project is called MyMTL (movie tier list). This is a Ruby on Rails 7 app, t
 Sign up and create their own movie tier lists. This app features TMDB API integration and to utilize it you will need to setup
 an env variable with your API Key. 
 
+## Recent Updates
+- Now With Dark Mode 😎
+- Style improvements 🎨
+- Social Features, follow your friends 🤼🤼
+- Hotwire for searching, no more pesky page reload!
 ## Getting Started 
 To get started with the app, clone the repo then install the needed gems:
 
