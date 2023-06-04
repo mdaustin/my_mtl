@@ -1,5 +1,5 @@
 <% @user ||= current_user %>
-<div>
+<div class="flex justify-center gap-4">
     <a href="<%= following_user_path(@user) %>" class="dark:text-slate-400 hover:text-slate-500 active:text-slate-600">
         <strong id="following">
             <%= @user.following.count %>
