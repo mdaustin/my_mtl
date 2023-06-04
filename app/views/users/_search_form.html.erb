@@ -1,0 +1,9 @@
+<div class="flex items-center mb-4">
+    <%= form_tag(search_users_path, method: :get, remote: true, class: "flex") do %>
+        <%= text_field_tag :search, params[:search], 
+                        placeholder: "Search users",
+                        class: "border border-gray-300 rounded-md p-2 w-full md:w-3/4" %>
+        <%= submit_tag "Search", 
+                    class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" %>
+    <% end %>
+</div>
