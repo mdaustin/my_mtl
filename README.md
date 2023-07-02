@@ -23,6 +23,18 @@ $ bundle install
 
 ```
 
+Install tailwindcss
+
+```
+$ rails tailwindcss:install
+```
+
+Add the TMDB API key (name it as tmdb_api_key: yourKeyHere )
+
+```
+$ rails credentials:edit 
+```
+
 Next, migrate the DB
 
 ```
