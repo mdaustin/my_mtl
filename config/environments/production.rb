@@ -22,7 +22,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present? || true
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
@@ -64,6 +64,10 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Use :console for email delivery in production for now
+  config.action_mailer.raise_delivery_errors = false
+
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -82,12 +86,20 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
+
+  # TODO: Turn this off probably
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    config.log_level = :debug
   end
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # TODO : Change this to the actual domain name
+  config.action_mailer.default_url_options = { host: 'localhost' }
+  # If your app is using SSL (https):
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000, protocol: 'https' }
 end
