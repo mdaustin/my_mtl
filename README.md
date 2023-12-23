@@ -71,3 +71,5 @@ Build the image and run the container:
     $ docker build -t mymtl .
     $ docker run -p 3000:3000 mymtl
 ```
+
+Note: The API key will need to be added to the credentials file prior to creating the container.
