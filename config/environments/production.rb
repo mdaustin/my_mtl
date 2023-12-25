@@ -101,5 +101,5 @@ Rails.application.configure do
   # TODO : Change this to the actual domain name
   config.action_mailer.default_url_options = { host: 'localhost' }
   # If your app is using SSL (https):
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000, protocol: 'https' }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 80, protocol: 'https' }
 end
