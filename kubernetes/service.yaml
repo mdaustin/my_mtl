@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mymtl-service # The name of your service
+spec:
+  selector:
+    app: mymtl # Selector for the pods the service should target
+  ports:
+    - protocol: TCP
+      port: 80 # The port the service listens on
+      targetPort: 3000 # The port on the pod to forward to
+  type: LoadBalancer # The type of service: ClusterIP, NodePort, or LoadBalancer

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mymtl-deployment
+spec:
+  replicas: 2 # Number of replicas
+  selector:
+    matchLabels:
+      app: mymtl
+  template:
+    metadata:
+      labels:
+        app: mymtl
+    spec:
+      containers:
+        - name: mymtl
+          image: my-mtl:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
