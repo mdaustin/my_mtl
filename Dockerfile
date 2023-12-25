@@ -35,6 +35,6 @@ RUN rails tailwindcss:install
 EXPOSE 3000
 
 # Start the main process (Rails Server)
-CMD ["rails", "server", "-b", "0.0.0.0"]
-# CMD ["rails", "s", "-b", "ssl://0.0.0.0:3000?key=/etc/ssl/private/localhost.key&cert=/etc/ssl/certs/localhost.crt"]
+# CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "s", "-b", "ssl://0.0.0.0:3000?key=/etc/ssl/private/localhost.key&cert=/etc/ssl/certs/localhost.crt"]
 

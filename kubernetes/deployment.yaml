@@ -12,9 +12,23 @@ spec:
       labels:
         app: mymtl
     spec:
+      initContainers:
+        - name: mymtl-init
+          image: my-mtl:latest
+          command: ["bundle", "exec", "rails", "db:migrate"]
+          imagePullPolicy: Never
       containers:
         - name: mymtl
           image: my-mtl:latest
-          imagePullPolicy: IfNotPresent
+          env:
+            - name: RAILS_ENV
+              value: "production"
+            - name: RAILS_SERVE_STATIC_FILES
+              value: "true"
+            - name: RAILS_LOG_TO_STDOUT
+              value: "true"
+            - name: DATABASE_URL
+              value: "postgres://user:password@mymtl-postgres-service/mymtl_production"
+          imagePullPolicy: Never
           ports:
             - containerPort: 3000

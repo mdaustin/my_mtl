@@ -5,7 +5,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: myapp_production
+      POSTGRES_DB: mymtl_production
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
   web:
