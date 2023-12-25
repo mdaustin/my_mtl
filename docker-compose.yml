@@ -13,6 +13,7 @@ services:
       - .env
     build: .
     # command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    # local SSL
     command: bundle exec rails s -b "ssl://0.0.0.0:3000?key=/etc/ssl/private/localhost.key&cert=/etc/ssl/certs/localhost.crt"
     volumes:
       - .:/usr/src/app
