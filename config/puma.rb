@@ -39,11 +39,12 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 #
 # preload_app!
 
-# SSL binding
-ssl_bind '0.0.0.0', '3001', {
-  key: ENV.fetch("SSL_KEY_PATH") { 'config/certs/localhost.key' },
-  cert: ENV.fetch("SSL_CERT_PATH") { 'config/certs/localhost.crt' }
-}
+# SSL binding (only when the certs are present, since config/certs is gitignored)
+ssl_key  = ENV.fetch("SSL_KEY_PATH") { 'config/certs/localhost.key' }
+ssl_cert = ENV.fetch("SSL_CERT_PATH") { 'config/certs/localhost.crt' }
+if File.exist?(ssl_key) && File.exist?(ssl_cert)
+  ssl_bind '0.0.0.0', '3001', { key: ssl_key, cert: ssl_cert }
+end
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart

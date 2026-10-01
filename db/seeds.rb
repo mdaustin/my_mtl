@@ -58,7 +58,9 @@ if Tier.count == 0
 end
 
 # Generate 20 movies from TMDB API Popular Movies endpoint
-if Movie.count == 0
+if Movie.count == 0 && Tmdb::Api.params[:api_key].blank?
+    puts "Skipping movie seeds: no TMDB API key (set TMDB_API_KEY or tmdb_api_key in credentials)"
+elsif Movie.count == 0
     Tmdb::Movie.popular.results.each do |movie|
         movie_detail = Tmdb::Movie.detail(movie.id)
         Movie.create!(title: movie_detail.title,
@@ -71,7 +73,7 @@ if Movie.count == 0
 end
 
 # Generate 3 tier_movies for the first tier 
-if TierMovie.count == 0
+if TierMovie.count == 0 && Movie.any?
     tier = Tier.first
     3.times do 
         tier.tier_movies.create!(movie_id: Movie.all.sample.id)

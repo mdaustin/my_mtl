@@ -1,5 +1,5 @@
 # Use an official Ruby runtime as a parent image
-FROM ruby:3.1.2
+FROM ruby:3.4.10
 
 # Install dependencies
 RUN apt-get update -qq && apt-get install -y nodejs npm sqlite3
