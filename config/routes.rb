@@ -15,7 +15,8 @@ Rails.application.routes.draw do
       get :search
     end
     member do 
-      get :following, :followers
+      get :following
+      get :followers
     end
     resources :tier_lists do 
       resources :tiers do
