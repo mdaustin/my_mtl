@@ -1,10 +1,13 @@
-<h1 class="dark:text-white">Editing tier list</h1>
+<% provide(:title, "Edit tier list") %>
+<div class="mx-auto max-w-lg py-6">
+  <h1 class="page-title">Edit tier list</h1>
 
-<%= render "form", tier_list: @tier_list %>
+  <div class="card mt-8 p-6 sm:p-8">
+    <%= render "form", tier_list: @tier_list %>
+  </div>
 
-<br>
-
-<div>
-  <%= link_to "Show this tier list", user_tier_list_path(@tier_list.user, @tier_list), class: "dark:text-slate-400 dark:hover:text-slate-400 dark:active:text-slate-500"  %> |
-  <%= link_to "Back to tier lists", @tier_list.user, class: "dark:text-slate-400 dark:hover:text-slate-400 dark:active:text-slate-500"  %>
+  <div class="mt-6 flex gap-4 text-sm">
+    <%= link_to "View tier list", user_tier_list_path(@tier_list.user, @tier_list), class: "link" %>
+    <%= link_to "Back to your tier lists", @tier_list.user, class: "link" %>
+  </div>
 </div>

@@ -22,7 +22,7 @@ class TierListsControllerTest < ActionDispatch::IntegrationTest
   test "should updated tier list when logged in" do
     log_in_as(@user)
     patch user_tier_list_path(@user, @tier_list), params: { tier_list: { title: "Test", description: "Test" } }
-    assert_redirected_to user_tier_lists_path(@tier_list)
+    assert_redirected_to user_tier_list_path(@user, @tier_list)
 
     @tier_list.reload
     assert @tier_list.title == "Test"

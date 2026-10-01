@@ -1,43 +1,50 @@
-<% provide(title: @tier_list.title) %>
-<div class="bg-white shadow-md rounded-lg p-6 mb-8">
-    <h1 class="text-4xl font-bold text-gray-800 mt-2 mb-2 text-center"><%= @tier_list.title %></h1>
-    <p class="text-lg text-gray-600 dark:text-slate-400 mb-6 text-center"><%= @tier_list.description %></p>
-    <p class="text-lg text-gray-600 mb-6 text-center">
-      Total Runtime: <%= distance_of_time_in_words(@tier_list.total_runtime.minutes) %>
-       | <%= @tier_list.total_runtime_hours %> hours
-       | <%= @tier_list.total_runtime %> minutes
-    </p>
-    
+<% provide(:title, @tier_list.title) %>
+<% owner = current_user == @tier_list.user %>
 
-    <% if current_user == @tier_list.user %>
-      <div id='new_tier' class="bg-white shadow-md rounded-lg p-6 mb-8">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Add a new tier</h2>
-        <%= render partial: 'tiers/form', locals: { tier: Tier.new } %>
-    </div>
+<header class="flex flex-wrap items-start justify-between gap-6">
+  <div class="min-w-0">
+    <%= link_to @tier_list.user, class: "inline-flex items-center gap-2 text-sm muted hover:text-zinc-900 dark:hover:text-white" do %>
+      <%= avatar(@tier_list.user, size: "size-6 text-[0.65rem]") %> <%= @tier_list.user.username %>
     <% end %>
-    
-
-    <div>
-        <% if current_user == @tier_list.user %>
-          <ul data-controller="sortable" id="tiers">
-            <% @tiers.rank(:row_order).each do |tier| %>
-                <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(tier, @tier_list, @tier_list.user)%>
-                <%# <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier)%>
-
-                    <%= render tier unless tier.title == "Search Results" %>
-                <%# </li> %>
-            <% end %>
-           </ul>
-        <% else %>
-          <ul>
-            <% @tiers.rank(:row_order).each do |tier| %>
-                <%= render tier unless tier.title == "Search Results" %>
-            <% end %>
-          </ul>
-        <% end %>
-        
+    <h1 class="page-title mt-2"><%= @tier_list.title %></h1>
+    <p class="mt-2 max-w-2xl muted"><%= @tier_list.description %></p>
+    <div class="mt-4 flex flex-wrap gap-2 text-xs font-medium">
+      <span class="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 px-3 py-1 text-zinc-700 dark:bg-white/5 dark:text-zinc-300">
+        <%= icon(:film, class: "size-4") %> <%= pluralize(@tier_list.total_movie_count, "movie") %>
+      </span>
+      <span class="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 px-3 py-1 text-zinc-700 dark:bg-white/5 dark:text-zinc-300" title="<%= @tier_list.total_runtime %> minutes">
+        <%= icon(:clock, class: "size-4") %> <%= @tier_list.total_runtime_hours %>h <%= @tier_list.total_runtime % 60 %>m total runtime
+      </span>
     </div>
-    <% if current_user == @tier_list.user %>
-        <%= render 'movies/search', locals: { user: @user, tier_list: @tier_list } %>
+  </div>
+  <% if owner %>
+    <%= link_to edit_user_tier_list_path(@tier_list.user, @tier_list), class: "btn-secondary" do %>
+      <%= icon(:pencil, class: "size-4") %> Edit details
     <% end %>
-</div>
+  <% end %>
+</header>
+
+<section class="mt-8">
+  <% if owner %>
+    <ul data-controller="sortable" id="tiers" class="tier-stack space-y-2">
+      <% @tiers.rank(:row_order).each do |tier| %>
+        <%= render tier unless tier.title == "Search Results" %>
+      <% end %>
+    </ul>
+    <div id="new_tier" class="mt-3">
+      <%= render partial: 'tiers/form', locals: { tier: Tier.new } %>
+    </div>
+  <% else %>
+    <ul class="tier-stack space-y-2">
+      <% @tiers.rank(:row_order).each do |tier| %>
+        <%= render tier unless tier.title == "Search Results" %>
+      <% end %>
+    </ul>
+  <% end %>
+</section>
+
+<% if owner %>
+  <section class="card mt-10 p-5 sm:p-6">
+    <%= render 'movies/search', locals: { user: @user, tier_list: @tier_list } %>
+  </section>
+<% end %>

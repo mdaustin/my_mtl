@@ -1,33 +1,34 @@
 <!DOCTYPE html>
-<html class="h-full">
+<html class="h-full scheme-light dark:scheme-dark">
   <head>
     <title><%= full_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="h-full dark:bg-slate-800">
+  <body class="flex min-h-full flex-col">
     <%= render 'layouts/header' %>
-    <main class="container mx-auto mt-14 px-5 flex">
-      <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <%= render 'shared/flash' %>
+    <%= render 'shared/flash' %>
 
-        <!-- content -->
-        <%= yield %>
-      </div>
+    <main class="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 lg:px-8">
+      <%= yield %>
     </main>
+
     <%= render 'layouts/footer' %>
 
-    <!-- Debug Info -->
     <% if Rails.env.development? %>
-      <pre class="bg-gray-800 text-white p-4 rounded-md mt-8 overflow-auto">
-        <%= debug(params) %>
-      </pre>
+      <details class="mx-auto mb-6 w-full max-w-6xl px-4 text-xs text-zinc-500 sm:px-6 lg:px-8">
+        <summary class="cursor-pointer select-none">Debug params</summary>
+        <pre class="mt-2 overflow-auto rounded-lg bg-zinc-900 p-4 text-zinc-100"><%= debug(params) %></pre>
+      </details>
     <% end %>
   </body>
 </html>

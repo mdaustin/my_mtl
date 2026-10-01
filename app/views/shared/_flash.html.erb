@@ -1,11 +1,12 @@
-<% flash.each do |key, value| %>
-  <div data-controller="flash" class="flex items-center <%= css_for_flash_key(key) %> rounded-md fixed top-5 right-5 ">
-    <%= value %>
-
-    <button type="button" data-action="flash#dismiss">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-4 w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-    </svg>
-    </button>
-  </div>
-<% end %>
+<div class="pointer-events-none fixed inset-x-0 top-20 z-50 flex flex-col items-center gap-2 px-4 sm:items-end sm:px-6">
+  <% flash.each do |key, value| %>
+    <div data-controller="flash" role="status"
+         class="pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-xl p-4 text-sm shadow-lg ring-1 <%= css_for_flash_key(key) %>">
+      <%= icon(flash_icon(key), class: "size-5 shrink-0") %>
+      <p class="flex-1 font-medium"><%= value %></p>
+      <button type="button" data-action="flash#dismiss" class="shrink-0 opacity-60 hover:opacity-100" aria-label="Dismiss">
+        <%= icon(:x, class: "size-5") %>
+      </button>
+    </div>
+  <% end %>
+</div>

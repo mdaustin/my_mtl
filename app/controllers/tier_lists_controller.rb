@@ -38,7 +38,7 @@ class TierListsController < ApplicationController
     def update 
         if @tier_list.update(tier_list_params)
             flash[:success] = "Tier List successfully updated."
-            redirect_to user_tier_lists_path(@tier_list)
+            redirect_to user_tier_list_path(current_user, @tier_list)
         else 
             render 'edit', status: :unprocessable_entity
         end

@@ -1,15 +1,10 @@
-<div class="relative top-0 left-1/2 transform -translate-x-1/2 -translate-y-full z-50" data-hovercard-target="card">
-    <div data-tooltip-arrow class="absolute top-[-6rem] left-0 z-50 bg-white shadow-lg transform -translate-y-full mt-[-500] origin-top-left">
-        <div class="flex flex-col space-y-2 space-x-3 items-center w-64">
-            <div class="flex-shrink-0">
-                <img src="<%= @tier_movie.movie.poster_url("w500") %>" alt="<%= @tier_movie.movie.title %> Poster" 
-                     class="w-48 h-64 object-cover rounded-md transition-transform duration-200 group-hover:scale-110 p-4">
-            </div>
-            <div class="flex-1 p-4">
-                <h4 class="text-sm font-semibold text-gray-800"><%= @tier_movie.movie.title %></h4>
-                <p class="text-xs text-gray-600"><%= @tier_movie.movie.release_date %> | <%= @tier_movie.movie.runtime %> mins</p>
-                <p class="text-xs text-gray-600 mt-1"><%= @tier_movie.movie.overview %></p>
-            </div>        
-        </div>    
+<div class="pointer-events-none absolute bottom-full left-1/2 z-50 mb-3 w-72 -translate-x-1/2" data-hovercard-target="card">
+    <div class="card flex gap-4 p-3 shadow-xl">
+        <img src="<%= @tier_movie.movie.poster_url("w342") %>" alt="" class="aspect-[2/3] w-24 shrink-0 rounded-lg object-cover">
+        <div class="min-w-0 py-1">
+            <h4 class="font-display text-base leading-tight font-bold text-zinc-900 dark:text-white"><%= @tier_movie.movie.title %></h4>
+            <p class="mt-1 text-xs muted"><%= @tier_movie.movie.release_date&.year %> · <%= @tier_movie.movie.runtime %> min</p>
+            <p class="mt-2 line-clamp-5 text-xs text-zinc-600 dark:text-zinc-300"><%= @tier_movie.movie.overview %></p>
+        </div>
     </div>
 </div>

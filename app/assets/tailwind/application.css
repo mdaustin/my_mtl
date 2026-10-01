@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100;
+  }
+
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
+  }
+
+  /* Rails wraps invalid fields in div.field_with_errors */
+  .field_with_errors {
+    @apply contents;
+  }
+  .field_with_errors label {
+    @apply text-rose-600 dark:text-rose-400;
+  }
+  .field_with_errors input,
+  .field_with_errors textarea {
+    @apply ring-rose-500 dark:ring-rose-500;
+  }
+}
+
+/* A @utility (rather than a component class) so the button variants below can @apply it */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition
+         focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 cursor-pointer;
+}
+
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply btn bg-amber-400 text-zinc-950 shadow-sm hover:bg-amber-300 focus-visible:outline-amber-400;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-zinc-900 shadow-sm ring-1 ring-zinc-300 ring-inset hover:bg-zinc-50
+           dark:bg-white/5 dark:text-zinc-100 dark:ring-white/10 dark:hover:bg-white/10;
+  }
+  .btn-danger {
+    @apply btn bg-rose-600 text-white shadow-sm hover:bg-rose-500 focus-visible:outline-rose-600;
+  }
+  .btn-ghost {
+    @apply btn text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900
+           dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white;
+  }
+
+  /* Forms */
+  .field-label {
+    @apply block text-sm font-medium text-zinc-700 dark:text-zinc-300;
+  }
+  .field-input {
+    @apply block w-full rounded-lg border-0 bg-white px-3 py-2 text-zinc-900 shadow-sm ring-1 ring-zinc-300 ring-inset
+           placeholder:text-zinc-400 focus:ring-2 focus:ring-amber-400 focus:ring-inset sm:text-sm
+           dark:bg-white/5 dark:text-white dark:ring-white/10 dark:placeholder:text-zinc-500;
+  }
+  .field-checkbox {
+    @apply size-4 rounded border-zinc-300 text-amber-500 focus:ring-amber-400 dark:border-white/20 dark:bg-white/5;
+  }
+
+  /* Surfaces */
+  .card {
+    @apply rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-white/10;
+  }
+
+  /* Text */
+  .page-title {
+    @apply text-3xl font-bold text-zinc-900 sm:text-4xl dark:text-white;
+  }
+  .muted {
+    @apply text-zinc-500 dark:text-zinc-400;
+  }
+  .link {
+    @apply font-medium text-amber-600 hover:text-amber-500 dark:text-amber-400 dark:hover:text-amber-300;
+  }
+
+  /* Header nav */
+  .nav-link {
+    @apply flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition
+           hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white;
+  }
+  .nav-link-active {
+    @apply bg-zinc-100 text-zinc-900 dark:bg-white/10 dark:text-white;
+  }
+  .mobile-nav-link {
+    @apply flex items-center gap-2 rounded-lg px-3 py-2 text-base font-medium text-zinc-700
+           hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-white/5;
+  }
+
+  /* Avatar with initials */
+  .avatar {
+    @apply inline-flex shrink-0 items-center justify-center rounded-full font-semibold text-white;
+  }
+
+  /* will_paginate */
+  div.pagination {
+    @apply mt-8 flex flex-wrap items-center justify-center gap-1 text-sm;
+  }
+  div.pagination a,
+  div.pagination span,
+  div.pagination em {
+    @apply rounded-lg px-3 py-1.5 text-zinc-600 dark:text-zinc-400;
+  }
+  div.pagination a:hover {
+    @apply bg-zinc-100 text-zinc-900 dark:bg-white/5 dark:text-white;
+  }
+  div.pagination em.current {
+    @apply bg-amber-400 font-semibold text-zinc-950 not-italic;
+  }
+  div.pagination .disabled {
+    @apply opacity-40;
+  }
+
+  /* Tier rows: label colour follows position, so it updates live while dragging */
+  .tier-label {
+    @apply bg-zinc-500;
+  }
+  .tier-stack > li:nth-child(8n + 1) .tier-label { @apply bg-rose-500; }
+  .tier-stack > li:nth-child(8n + 2) .tier-label { @apply bg-orange-500; }
+  .tier-stack > li:nth-child(8n + 3) .tier-label { @apply bg-amber-400; }
+  .tier-stack > li:nth-child(8n + 4) .tier-label { @apply bg-yellow-300; }
+  .tier-stack > li:nth-child(8n + 5) .tier-label { @apply bg-lime-400; }
+  .tier-stack > li:nth-child(8n + 6) .tier-label { @apply bg-emerald-400; }
+  .tier-stack > li:nth-child(8n + 7) .tier-label { @apply bg-sky-400; }
+  .tier-stack > li:nth-child(8n + 8) .tier-label { @apply bg-violet-400; }
+
+  /* Sortable.js drag states */
+  .sortable-ghost {
+    @apply opacity-40;
+  }
+  .sortable-chosen {
+    @apply ring-2 ring-amber-400;
+  }
+}
