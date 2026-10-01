@@ -8,7 +8,7 @@
   <div class="relative" data-controller="hovercard"
        data-hovercard-url-value="<%= hovercard_user_tier_list_tier_tier_movie_path(@tier_list.user, @tier_list, tier, tier_movie) %>"
        data-action="mouseenter->hovercard#show mouseleave->hovercard#hide">
-    <img src="<%= tier_movie.movie.poster_url %>" alt="<%= tier_movie.movie.title %> Poster" draggable="false"
-         class="aspect-[2/3] w-16 rounded-lg object-cover shadow-sm ring-1 ring-black/5 transition duration-200 group-hover:-translate-y-0.5 group-hover:shadow-md sm:w-20">
+    <%= render 'movies/poster', movie: tier_movie.movie,
+               class: "w-16 rounded-lg shadow-sm ring-1 ring-black/5 transition duration-200 group-hover:-translate-y-0.5 group-hover:shadow-md sm:w-20" %>
   </div>
 </div>

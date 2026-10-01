@@ -1,9 +1,9 @@
 <li id="<%= dom_id tier_list %>" class="card group relative flex flex-col p-5 transition hover:ring-amber-400/60">
   <% posters = tier_list.preview_movies %>
-  <div class="flex h-24 gap-1.5">
+  <div class="flex h-24 gap-1.5 overflow-hidden">
     <% if posters.any? %>
       <% posters.each do |movie| %>
-        <img src="<%= movie.poster_url %>" alt="" loading="lazy" class="aspect-[2/3] h-full rounded-md object-cover shadow-sm">
+        <%= render 'movies/poster', movie: movie, compact: true, class: "h-full shrink-0 rounded-md shadow-sm" %>
       <% end %>
     <% else %>
       <div class="flex h-full w-full items-center justify-center rounded-lg border border-dashed border-zinc-300 text-xs muted dark:border-white/10">No movies yet</div>
