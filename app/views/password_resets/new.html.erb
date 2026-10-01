@@ -1,22 +1,21 @@
 <% provide(:title, "Forgot password") %>
 
-<div class="flex gap-1 min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-  <div class="w-full max-w-md space-y-8">
-    <div>
-      <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Forgot password</h2>
-      <p class="mt-2 text-center text-sm text-gray-600">
-      </p>
-    </div>
+<div class="mx-auto max-w-md py-6">
+  <div class="text-center">
+    <h1 class="page-title">Forgot your password?</h1>
+    <p class="mt-2 muted">We'll email you a link to reset it.</p>
+  </div>
 
-    <%= form_with(url: password_resets_path, scope: :password_reset, class: "flex flex-col gap-2") do |f| %>
-      <%= f.label :email, class: "dark:text-slate-400" %>
-      <%= f.email_field :email, placeholder: "email", class: "relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+  <div class="card mt-8 p-6 sm:p-8">
+    <%= form_with(url: password_resets_path, scope: :password_reset, class: "space-y-5") do |f| %>
+      <div class="space-y-1.5">
+        <%= f.label :email, class: "field-label" %>
+        <%= f.email_field :email, placeholder: "you@example.com", autocomplete: "email", class: "field-input" %>
+      </div>
 
-      <%= f.submit "Submit", class: 'group relative flex w-full justify-center
-                                              rounded-md border border-transparent bg-yellow-500
-                                              py-2 px-4 text-sm font-medium text-white hover:bg-yellow-400
-                                              focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2' %>
-
+      <%= f.submit "Send reset link", class: "btn-primary w-full" %>
     <% end %>
   </div>
+
+  <p class="mt-6 text-center text-sm muted"><%= link_to "Back to log in", login_path, class: 'link' %></p>
 </div>

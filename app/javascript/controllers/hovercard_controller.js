@@ -13,6 +13,7 @@ export default class extends Controller {
     this.timeoutId = setTimeout(() => {
     if (this.hasCardTarget) {
       this.cardTarget.classList.remove("hidden")
+      this.place()
     } else {
       fetch(this.urlValue)
         .then((response) => response.text())
@@ -20,9 +21,25 @@ export default class extends Controller {
           const fragment = document.createRange().createContextualFragment(html);
 
           this.element.appendChild(fragment);
+          this.place();
       });
     }
     }, 500);
+  }
+
+  // Open above the poster, or below it when there isn't room under the sticky header
+  place() {
+    if (!this.hasCardTarget) return
+
+    const card = this.cardTarget
+    const headerHeight = document.querySelector("header")?.offsetHeight || 0
+    const roomAbove = this.element.getBoundingClientRect().top - headerHeight
+    const below = roomAbove < card.offsetHeight + 16
+
+    card.classList.toggle("bottom-full", !below)
+    card.classList.toggle("mb-3", !below)
+    card.classList.toggle("top-full", below)
+    card.classList.toggle("mt-3", below)
   }
 
   hide() {

@@ -1,30 +1,21 @@
 <% provide(:title, "Help") %>
-<div>
-  <h1 class="font-bold text-4xl">StaticPages#help</h1>
-  <p>Find me in app/views/static_pages/help.html.erb</p>
+<div class="mx-auto max-w-3xl">
+  <h1 class="page-title">Help</h1>
+  <p class="mt-3 text-lg muted">Everything you need to build your first tier list.</p>
+
+  <div class="mt-10 space-y-4">
+    <% [["How do I make a tier list?", "Open My Tier Lists and choose New tier list. Give it a title and a short description."],
+        ["How do I add tiers?", "On your tier list, use the Add a tier box. Tiers are coloured by position, top to bottom."],
+        ["How do I add movies?", "Search for a movie at the bottom of your tier list. Results appear in a row you can drag from."],
+        ["How do I rank movies?", "Drag posters between tiers, or drag a whole tier to reorder it. Changes save automatically."],
+        ["How do I follow people?", "Find someone on the Users page and press Follow on their profile. Their lists show up in your feed."]].each do |q, a| %>
+      <details class="card group p-5">
+        <summary class="flex cursor-pointer list-none items-center justify-between font-semibold text-zinc-900 dark:text-white">
+          <%= q %>
+          <%= icon(:plus, class: "size-5 shrink-0 text-zinc-400 transition group-open:rotate-45") %>
+        </summary>
+        <p class="mt-3 text-sm muted"><%= a %></p>
+      </details>
+    <% end %>
+  </div>
 </div>
-
-
-<%# Adding lg:hidden here to hide the button on large screens %> 
-<div data-controller="menu" class="relative inline-block pt-10 text-left lg:hidden">   
-
-   <%# Hamburger button %>                                                                                                                        
-   <div data-action="click->menu#toggle">                                                                                                                                                                        
-     <button type="button" class="inline-flex justify-center w-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" 
-       id="options-menu" aria-haspopup="true" aria-expanded="true">                                                                                                                 
-       <svg viewBox="0 0 100 80" width="60" height="60">                                                                                                                            
-           <rect width="100" height="20" rx="8"></rect>                                                                                                                             
-           <rect y="30" width="100" height="20" rx="8"></rect>                                                                                                                      
-           <rect y="60" width="100" height="20" rx="8"></rect>                                                                                                                      
-       </svg>                                                                                                                                                                       
-     </button>                                                                                                                                                                      
-   </div>                                                                                                                                                                           
-
-   <%# Dropdown menu with a default hidden class %>                                                                                                                                                                        
-   <div data-menu-target="toggleable" class="hidden absolute right-0 w-56 mt-2 bg-white shadow-lg origin-top-right rounded-md ring-1 ring-black ring-opacity-5">                                                         
-     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">                                                                                      
-       <a href="/about" class="block px-4 py-2 text-4xl text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">About</a>                                              
-       <a href="/posts" class="block px-4 py-2 text-4xl text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Posts</a>                                              
-     </div>                                                                                                                                                                         
-   </div>                                                                                                                                                                           
- </div>

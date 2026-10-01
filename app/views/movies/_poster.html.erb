@@ -1,0 +1,16 @@
+<%# A movie poster, or a placeholder with the title when TMDB has no image.
+    Locals: movie, class (sizing/rounding), size (TMDB width), compact (icon only) %>
+<% size = local_assigns.fetch(:size, "w154") %>
+<% classes = local_assigns[:class] %>
+<% if movie.poster? %>
+  <img src="<%= movie.poster_url(size) %>" alt="<%= movie.title %> poster" loading="lazy" draggable="false"
+       class="aspect-[2/3] object-cover <%= classes %>">
+<% else %>
+  <div role="img" aria-label="<%= movie.title %> (no poster)" title="<%= movie.title %>"
+       class="flex aspect-[2/3] flex-col items-center justify-center gap-1 overflow-hidden bg-linear-to-br from-zinc-200 to-zinc-300 p-1.5 text-center text-zinc-500 dark:from-zinc-700 dark:to-zinc-800 dark:text-zinc-400 <%= classes %>">
+    <%= icon(:film, class: "size-5 shrink-0 opacity-70") %>
+    <% unless local_assigns[:compact] %>
+      <span class="line-clamp-3 text-[0.625rem] leading-tight font-medium break-words hyphens-auto"><%= movie.title %></span>
+    <% end %>
+  </div>
+<% end %>

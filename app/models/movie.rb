@@ -8,6 +8,11 @@ class Movie < ApplicationRecord
     validates :tmdb_id, presence: true, uniqueness: true, numericality: { only_integer: true }
     validates :runtime, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
+    # Whether TMDB has a poster for this movie
+    def poster?
+        poster_path.present?
+    end
+
     # Returns the url for the movie's poster
     def poster_url(size = "w154")
         "https://image.tmdb.org/t/p/#{size}#{poster_path}"

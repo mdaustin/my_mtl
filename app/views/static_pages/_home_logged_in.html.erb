@@ -1,4 +1,19 @@
-<div>
-    <h3 class="dark:text-white">Tier List's</h3>
+<div class="flex flex-wrap items-end justify-between gap-4">
+  <div>
+    <h1 class="page-title">Welcome back, <%= current_user.username %></h1>
+    <p class="mt-1 muted">Tier lists from you and the people you follow.</p>
+  </div>
+  <%= link_to new_user_tier_list_path(current_user), class: "btn-primary" do %>
+    <%= icon(:plus, class: "size-4") %> New tier list
+  <% end %>
+</div>
+
+<div class="mt-8">
+  <% if @feed_items.any? %>
     <%= render 'shared/feed' %>
+  <% else %>
+    <div class="card p-10 text-center">
+      <p class="muted">Nothing here yet. Create a tier list or follow someone to fill your feed.</p>
+    </div>
+  <% end %>
 </div>

@@ -1,13 +1,33 @@
-<div id="<%= dom_id tier_list %>" class="bg-white p-4 rounded-md shadow-md mb-4">
-  <div class="flex items-center justify-between">
-    <h3 class="text-lg font-semibold text-gray-800">
-      <%= link_to tier_list.title, user_tier_list_path(@user, tier_list), class: "text-indigo-600 hover:text-indigo-500" %>
-    </h3>
-    <% if current_user?(tier_list.user) %>
-      <div class="flex items-center space-x-2 p-4">
-        <%= link_to 'Update', edit_user_tier_list_path(@user, tier_list), class: "text-sm text-gray-600 hover:text-gray-800" %>
-        <%= link_to 'Delete', [@user, tier_list], data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete your tier list #{tier_list.title}?"}, class: "text-sm text-red-600 hover:text-red-800" %>
-      </div>
+<li id="<%= dom_id tier_list %>" class="card group relative flex flex-col p-5 transition hover:ring-amber-400/60">
+  <% posters = tier_list.preview_movies %>
+  <div class="flex h-24 gap-1.5 overflow-hidden">
+    <% if posters.any? %>
+      <% posters.each do |movie| %>
+        <%= render 'movies/poster', movie: movie, compact: true, class: "h-full shrink-0 rounded-md shadow-sm" %>
+      <% end %>
+    <% else %>
+      <div class="flex h-full w-full items-center justify-center rounded-lg border border-dashed border-zinc-300 text-xs muted dark:border-white/10">No movies yet</div>
     <% end %>
   </div>
-</div>
+
+  <h3 class="mt-4 text-lg font-semibold text-zinc-900 dark:text-white">
+    <%= link_to tier_list.title, user_tier_list_path(tier_list.user, tier_list), class: "after:absolute after:inset-0 group-hover:text-amber-600 dark:group-hover:text-amber-400" %>
+  </h3>
+  <p class="mt-1 line-clamp-2 text-sm muted"><%= tier_list.description %></p>
+
+  <div class="mt-4 flex items-center justify-between gap-2 border-t border-zinc-100 pt-3 text-xs muted dark:border-white/5">
+    <span class="flex items-center gap-1.5"><%= avatar(tier_list.user, size: "size-5 text-[0.6rem]") %> <%= tier_list.user.username %></span>
+    <% if current_user?(tier_list.user) %>
+      <div class="relative z-10 flex items-center gap-1">
+        <%= link_to edit_user_tier_list_path(tier_list.user, tier_list), class: "rounded-md p-1.5 hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-white/5 dark:hover:text-white", title: "Edit" do %>
+          <%= icon(:pencil, class: "size-4") %><span class="sr-only">Update</span>
+        <% end %>
+        <%= link_to [tier_list.user, tier_list], data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete your tier list #{tier_list.title}?" }, class: "rounded-md p-1.5 hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-950 dark:hover:text-rose-400", title: "Delete" do %>
+          <%= icon(:trash, class: "size-4") %><span class="sr-only">Delete</span>
+        <% end %>
+      </div>
+    <% else %>
+      <span><%= time_ago_in_words(tier_list.updated_at) %> ago</span>
+    <% end %>
+  </div>
+</li>

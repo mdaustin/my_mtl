@@ -1,37 +1,35 @@
 <% provide(:title, @title) %>
-<div>
-    <aside>
-        <section class="grid grid-cols-2">
-            <%= link_to @user, class: "col-span-2" do %>
-                <h1 class="text-2xl font-semibold text-gray-800 dark:text-white my-4 text-center col-span-2"><%= @user.username %></h1>
-            <% end %>
-            <!-- <span class=" dark:text-slate-400 dark:hover:text-slate-500 dark:active:text-slate-600 col-span-2 text-center"><%= link_to "view my profile", @user %></span> -->
-            <span class="dark:text-slate-500"><strong>Tier Lists</strong> <%= @user.tier_lists.count %></span>
-            <span class="dark:text-slate-500"><strong>Movies Ranked</strong> <%= @user.total_ranked_movie_count %></span>
-        </section>
-
-        <section>
-            <%= render 'shared/user_stats' %>
-            <%= render 'search_form' %>
-            <% if @users.any? %>
-                <div>
-                    <% @users.each do |user| %>
-                        <div class='hidden'>
-                            <%= link_to user.username, user %>
-                        </div>
-                    <% end %>                    
-                </div>
-            <% end %>
-        </section>
+<div class="grid gap-8 lg:grid-cols-[18rem_1fr]">
+    <aside class="card h-fit space-y-5 p-6">
+        <%= link_to @user, class: "flex items-center gap-3" do %>
+            <%= avatar(@user, size: "size-12 text-base") %>
+            <span class="font-display text-xl font-bold text-zinc-900 hover:text-amber-600 dark:text-white dark:hover:text-amber-400"><%= @user.username %></span>
+        <% end %>
+        <dl class="grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-xl bg-zinc-100 p-3 dark:bg-white/5">
+                <dt class="muted">Tier lists</dt>
+                <dd class="mt-1 text-lg font-semibold"><%= @user.tier_lists.count %></dd>
+            </div>
+            <div class="rounded-xl bg-zinc-100 p-3 dark:bg-white/5">
+                <dt class="muted">Movies ranked</dt>
+                <dd class="mt-1 text-lg font-semibold"><%= @user.total_ranked_movie_count %></dd>
+            </div>
+        </dl>
+        <%= render 'shared/user_stats' %>
     </aside>
 
-    <div>
-        <h1 class="text-2xl font-semibold text-gray-800 dark:text-white my-4 text-center col-span-2"><%= @title %></h1>
+    <section>
+        <div class="flex flex-wrap items-end justify-between gap-4">
+            <h1 class="page-title"><%= @title %></h1>
+            <%= render 'search_form' %>
+        </div>
         <% if @users.any? %>
-            <ul>
+            <ul class="mt-6 grid gap-3 sm:grid-cols-2">
                 <%= render @users %>
             </ul>
             <%= will_paginate %>
+        <% else %>
+            <div class="card mt-6 p-10 text-center"><p class="muted">Nobody here yet.</p></div>
         <% end %>
-    </div>
+    </section>
 </div>

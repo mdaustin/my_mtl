@@ -1,0 +1,6 @@
+<% if @movies&.any? %>
+  <p class="mb-2 text-sm muted">Drag a poster into one of your tiers.</p>
+  <ul><%= render partial: 'tiers/tier', locals: { tier: @search_results_tier, tier_list: @tier_list } %></ul>
+<% elsif params[:query].present? %>
+  <p class="text-sm muted">No movies found for '<%= params[:query] %>'</p>
+<% end %>

@@ -1,46 +1,23 @@
-<% if current_user == @tier_list.user %>
-  <li data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier) %>"
-      class="list-none">
+<% owner = current_user == @tier_list.user %>
+<% search_results = tier.title == "Search Results" %>
+<li <% if owner %>data-sortable-update-url="<%= sort_user_tier_list_tier_path(@tier_list.user, @tier_list, tier) %>"<% end %> class="list-none">
   <%= turbo_frame_tag "tier-#{tier.id}" do %>
-    <div class="tier p-4 bg-white-100 shadow-md rounded-lg mb-4">
-      <div class="flex justify-between">
-      <h3 class="text-xl font-bold text-gray-800 mb-2"><%= tier.title %></h3>
-
-      <%= link_to user_tier_list_tier_path(@tier_list.user, @tier_list, tier), data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{tier.title}?" }, class: "inline-block text-red-600 hover:text-red-800 transition-colors" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      <% end %>
-      </div>
-      
-      <div class="flex items-center space-x-4">
-        <div data-controller="sortable" data-sortable-group-value="tier_movies" data-sortable-tier-id="<%= tier.id %>" 
-            class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-8 bg-neutral-500 rounded-lg mb-1 min-h-32 border border-gray-300 p-4 w-full h-full">
-          <% tier.tier_movies.rank(:row_order).each do |tier_movie| %>  
-            <%= render partial: "tier_movies/tier_movie", locals: { tier_movie: tier_movie, tier: tier } %>    
+    <div class="flex gap-2 <%= 'cursor-grab active:cursor-grabbing' if owner && !search_results %>">
+      <% unless search_results %>
+        <div class="tier-label group/label relative flex w-20 shrink-0 items-center justify-center rounded-xl p-2 text-center sm:w-28">
+          <h3 class="font-display text-base font-extrabold break-words text-zinc-950 sm:text-lg"><%= tier.title %></h3>
+          <% if owner %>
+            <%= link_to user_tier_list_tier_path(@tier_list.user, @tier_list, tier), data: { "turbo-method": :delete, turbo_confirm: "Are you sure you want to delete #{tier.title}?" }, class: "absolute top-1 right-1 rounded-md p-0.5 text-zinc-950/60 opacity-0 transition group-hover/label:opacity-100 hover:bg-black/10 hover:text-zinc-950 focus:opacity-100", title: "Delete tier" do %>
+              <%= icon(:x, class: "size-4") %><span class="sr-only">Delete <%= tier.title %></span>
+            <% end %>
           <% end %>
         </div>
-      </div>
+      <% end %>
+
+      <div <% if owner %>data-controller="sortable" data-sortable-group-value="tier_movies" data-sortable-tier-id="<%= tier.id %>"<% end %>
+           class="flex min-h-28 flex-1 flex-wrap content-start gap-2 rounded-xl bg-white p-2 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-white/10
+                  not-has-[>*]:content-center not-has-[>*]:justify-center not-has-[>*]:before:text-sm not-has-[>*]:before:text-zinc-400
+                  <%= owner ? "not-has-[>*]:before:content-['Drag_movies_here']" : "not-has-[>*]:before:content-['Empty']" %>"><% tier.tier_movies.rank(:row_order).each do |tier_movie| %><%= render partial: "tier_movies/tier_movie", locals: { tier_movie: tier_movie, tier: tier } %><% end %></div>
     </div>
   <% end %>
-  </li>
-
-<% else %>
-  <li>
-    <%= turbo_frame_tag "tier-#{tier.id}" do %>
-      <div class="tier p-4 bg-white-100 shadow-md rounded-lg mb-4">
-        <div class="flex justify-between">
-        <h3 class="text-xl font-bold text-gray-800 mb-2"><%= tier.title %></h3>
-        </div>
-        
-        <div class="flex items-center space-x-4">
-          <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-8 bg-neutral-500 rounded-lg mb-1 min-h-32 border border-gray-300 p-4 w-full h-full">
-            <% tier.tier_movies.rank(:row_order).each do |tier_movie| %>  
-              <%= render partial: "tier_movies/tier_movie", locals: { tier_movie: tier_movie, tier: tier } %>    
-            <% end %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </li>
-<% end %>
+</li>
